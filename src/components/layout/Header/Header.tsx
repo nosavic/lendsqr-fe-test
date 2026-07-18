@@ -4,7 +4,7 @@ import { SearchBar } from "./SearchBar";
 import { ProfileMenu } from "./ProfileMenu";
 import { ThemeToggle } from "./ThemeToggle";
 import { BellIcon, ChevronDownIcon, MenuIcon } from "@/components/icons";
-import { HEADER_HEIGHT_PX } from "@/constants/nav";
+import styles from "./Header.module.scss";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -13,19 +13,18 @@ interface HeaderProps {
 }
 
 export function Header({ onMenuClick, sidebarCollapsed, onToggleSidebarCollapsed }: HeaderProps) {
+  const collapseLabel = sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar";
+
   return (
-    <header
-      style={{ height: HEADER_HEIGHT_PX }}
-      className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between gap-4 bg-surface pl-[30px] pr-4 shadow-[0_0.5px_10px_rgba(0,0,0,0.051)] transition-colors sm:pr-12"
-    >
-      <div className="flex items-center gap-4">
+    <header className={styles.header}>
+      <div className={styles.brand}>
         <button
           type="button"
           onClick={onMenuClick}
-          className="rounded-md p-2 text-primary hover:bg-surface-hover md:hidden"
+          className={styles.menuButton}
           aria-label="Toggle navigation"
         >
-          <MenuIcon className="h-6 w-6" />
+          <MenuIcon className={styles.menuIcon} />
         </button>
         <Logo />
       </div>
@@ -33,33 +32,32 @@ export function Header({ onMenuClick, sidebarCollapsed, onToggleSidebarCollapsed
       <motion.button
         type="button"
         onClick={onToggleSidebarCollapsed}
-        title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-        aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        title={collapseLabel}
+        aria-label={collapseLabel}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        style={{ left: "max(var(--sidebar-width), 140px)" }}
-        className="absolute top-1/2 z-10 hidden -translate-y-1/2 rounded-md p-2 text-primary transition-[left] duration-200 hover:bg-surface-hover md:flex"
+        className={styles.collapseButton}
       >
         <motion.span
           animate={{ rotate: sidebarCollapsed ? -90 : 90 }}
           transition={{ type: "spring", stiffness: 300, damping: 22 }}
-          className="flex"
+          className={styles.collapseIconWrap}
         >
-          <ChevronDownIcon className="h-4 w-4" />
+          <ChevronDownIcon className={styles.collapseIcon} />
         </motion.span>
       </motion.button>
 
-      <div className="hidden flex-1 justify-center px-4 sm:flex md:justify-start md:pl-40">
+      <div className={styles.search}>
         <SearchBar />
       </div>
 
-      <div className="flex items-center gap-4 sm:gap-6">
-        <a href="#" className="hidden text-sm text-primary underline hover:text-primary-dark sm:inline">
+      <div className={styles.actions}>
+        <a href="#" className={styles.docsLink}>
           Docs
         </a>
-        <button type="button" className="relative text-primary" aria-label="Notifications">
-          <BellIcon className="h-5 w-5" />
-          <span className="absolute right-0 top-0 h-2 w-2 rounded-full border-2 border-surface bg-[#ff3333]" />
+        <button type="button" className={styles.notifications} aria-label="Notifications">
+          <BellIcon className={styles.bellIcon} />
+          <span className={styles.badge} />
         </button>
         <ThemeToggle />
         <ProfileMenu />

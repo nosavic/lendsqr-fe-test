@@ -5,12 +5,8 @@ import { SidebarNavItem } from "./SidebarNavItem";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { fadeInLeft, staggerContainer } from "@/lib/animations";
 import { BriefcaseIcon, ChevronDownIcon, LogoutIcon } from "@/components/icons";
-import {
-  HEADER_HEIGHT_PX,
-  NAV_GROUPS,
-  SIDEBAR_COLLAPSED_WIDTH_PX,
-  SIDEBAR_WIDTH_PX,
-} from "@/constants/nav";
+import { NAV_GROUPS, SIDEBAR_COLLAPSED_WIDTH_PX, SIDEBAR_WIDTH_PX } from "@/constants/nav";
+import styles from "./Sidebar.module.scss";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -45,7 +41,7 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-black/40 md:hidden"
+            className={styles.overlay}
           />
         )}
       </AnimatePresence>
@@ -53,19 +49,14 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
       <motion.aside
         animate={{ width: collapsed ? SIDEBAR_COLLAPSED_WIDTH_PX : SIDEBAR_WIDTH_PX }}
         transition={{ type: "spring", stiffness: 320, damping: 32 }}
-        style={{ paddingTop: HEADER_HEIGHT_PX + 30 }}
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col overflow-hidden bg-surface shadow-[5px_0_10px_rgba(0,0,0,0.025)] transition-colors transition-transform duration-200 md:z-30 ${
-          isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}
       >
         <button
           type="button"
           title={collapsed ? "Switch Organization" : undefined}
-          className={`mx-4 mb-2 flex items-center gap-3 rounded-lg px-4 py-2 text-primary transition-colors hover:bg-surface-hover ${
-            collapsed ? "w-fit justify-center px-2" : "w-fit"
-          }`}
+          className={`${styles.orgSwitcher} ${collapsed ? styles.collapsed : ""}`}
         >
-          <BriefcaseIcon className="h-4 w-4 shrink-0" />
+          <BriefcaseIcon className={styles.orgIcon} />
           <AnimatePresence initial={false}>
             {!collapsed && (
               <motion.span
@@ -73,10 +64,10 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
                 animate={{ opacity: 1, width: "auto" }}
                 exit={{ opacity: 0, width: 0 }}
                 transition={{ duration: 0.15 }}
-                className="flex items-center gap-3 overflow-hidden whitespace-nowrap"
+                className={styles.orgLabel}
               >
-                <span className="text-sm">Switch Organization</span>
-                <ChevronDownIcon className="h-3.5 w-3.5" />
+                <span className={styles.orgText}>Switch Organization</span>
+                <ChevronDownIcon className={styles.orgCaret} />
               </motion.span>
             )}
           </AnimatePresence>
@@ -86,14 +77,12 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
           initial="hidden"
           animate="visible"
           variants={navContainerVariants}
-          className="flex flex-1 flex-col gap-8 overflow-y-auto py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className={styles.nav}
         >
           {NAV_GROUPS.map((group, index) => (
             <motion.div key={group.title ?? `group-${index}`} variants={navGroupVariants}>
-              {group.title && !collapsed && (
-                <p className="mb-2 ml-6 text-xs font-medium text-body">{group.title}</p>
-              )}
-              <div className="flex flex-col">
+              {group.title && !collapsed && <p className={styles.groupTitle}>{group.title}</p>}
+              <div className={styles.groupItems}>
                 {group.items.map((item) => (
                   <SidebarNavItem
                     key={item.label}
@@ -108,19 +97,17 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
           ))}
         </motion.nav>
 
-        <div className="border-t border-card-line py-4">
+        <div className={styles.footer}>
           <button
             type="button"
             onClick={() => setLogoutModalOpen(true)}
             title={collapsed ? "Logout" : undefined}
-            className={`flex w-full items-center gap-3 border-l-[3px] border-transparent py-[0.6rem] text-[0.9rem] text-primary transition-colors hover:bg-surface-active ${
-              collapsed ? "justify-center px-2" : "pl-6"
-            }`}
+            className={`${styles.logout} ${collapsed ? styles.logoutCollapsed : ""}`}
           >
-            <LogoutIcon className="h-4 w-4 shrink-0" />
+            <LogoutIcon className={styles.logoutIcon} />
             {!collapsed && "Logout"}
           </button>
-          {!collapsed && <p className="ml-6 mt-2 text-xs text-body">v1.2.0</p>}
+          {!collapsed && <p className={styles.version}>v1.2.0</p>}
         </div>
       </motion.aside>
 

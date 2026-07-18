@@ -1,0 +1,56 @@
+@use "abstracts" as *;
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+  padding: 0.6rem 0;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-nav-inactive);
+  transition: background-color $transition-base, color $transition-base, border-color $transition-base;
+
+  &:hover {
+    border-left-color: var(--color-secondary);
+    background: var(--color-surface-active);
+    color: var(--color-primary);
+  }
+}
+
+.collapsed {
+  justify-content: center;
+  padding-inline: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.active {
+  border-left-color: var(--color-secondary);
+  background: var(--color-surface-active);
+  color: var(--color-primary);
+}
+
+.iconWrap {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity $transition-base;
+
+  .item:hover & { opacity: 1; }
+}
+
+.iconActive {
+  opacity: 1;
+}
+
+.label {
+  white-space: nowrap;
+}

@@ -1,0 +1,59 @@
+@use "abstracts" as *;
+
+.panel {
+  width: 10rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: $radius-md;
+  background: var(--color-surface);
+  box-shadow: $shadow-popover;
+}
+
+.trigger {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: $radius-md;
+  padding: 0.25rem;
+  transition: background-color $transition-base;
+
+  &:hover { background: var(--color-surface-hover); }
+}
+
+.name {
+  display: none;
+  font-size: 0.975rem;
+  font-weight: 500;
+  color: var(--color-primary);
+
+  @include respond-to(sm) { display: inline; }
+}
+
+.caret {
+  display: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  color: var(--color-primary);
+
+  @include respond-to(sm) { display: inline; }
+}
+
+.logout {
+  @include reset-button;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-strong);
+  transition: background-color $transition-base;
+
+  &:hover { background: var(--color-surface-hover); }
+}
+
+.logoutIcon {
+  width: 1rem;
+  height: 1rem;
+}

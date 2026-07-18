@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { NavItem } from "@/constants/nav";
+import styles from "./SidebarNavItem.module.scss";
 
 interface SidebarNavItemProps {
   item: NavItem;
@@ -11,22 +12,20 @@ interface SidebarNavItemProps {
 
 export function SidebarNavItem({ item, active, onNavigate, collapsed }: SidebarNavItemProps) {
   const Icon = item.icon;
+  const classes = [styles.item, collapsed ? styles.collapsed : "", active ? styles.active : ""]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <Link
       href={item.href}
       onClick={onNavigate}
       title={collapsed ? item.label : undefined}
-      className={`group relative flex items-center gap-3 overflow-hidden border-l-[3px] py-[0.6rem] text-[0.9rem] transition-colors ${
-        collapsed ? "justify-center px-2" : "pl-6"
-      } ${
-        active
-          ? "border-secondary bg-surface-active text-primary"
-          : "border-transparent text-nav-inactive hover:border-secondary hover:bg-surface-active hover:text-primary"
-      }`}
+      aria-current={active ? "page" : undefined}
+      className={classes}
     >
-      <motion.span whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} className="flex shrink-0">
-        <Icon className={`h-4 w-4 shrink-0 transition-opacity ${active ? "opacity-100" : "opacity-70 group-hover:opacity-100"}`} />
+      <motion.span whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} className={styles.iconWrap}>
+        <Icon className={`${styles.icon} ${active ? styles.iconActive : ""}`} />
       </motion.span>
       <AnimatePresence initial={false}>
         {!collapsed && (
@@ -35,7 +34,7 @@ export function SidebarNavItem({ item, active, onNavigate, collapsed }: SidebarN
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -6 }}
             transition={{ duration: 0.15 }}
-            className="whitespace-nowrap"
+            className={styles.label}
           >
             {item.label}
           </motion.span>

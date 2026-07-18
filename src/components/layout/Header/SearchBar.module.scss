@@ -1,0 +1,51 @@
+@use "abstracts" as *;
+
+.form {
+  display: flex;
+  height: 32px;
+  width: 320px;
+}
+
+.input {
+  box-sizing: border-box;
+  height: 32px;
+  width: 100%;
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+  border-right: none;
+  border-radius: $radius-md 0 0 $radius-md;
+  background: var(--color-surface);
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--color-text-strong);
+  outline: none;
+  transition: border-color $transition-base;
+
+  &::placeholder {
+    font-size: 12px;
+    line-height: 1;
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    border-color: var(--color-secondary);
+  }
+}
+
+.submit {
+  @include reset-button;
+  @include flex-center;
+  min-width: 58px;
+  border-radius: 0 $radius-md $radius-md 0;
+  background: var(--color-secondary);
+  color: #fff;
+  transition: background-color $transition-base;
+
+  &:hover { background: var(--color-secondary-hover); }
+}
+
+.icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}

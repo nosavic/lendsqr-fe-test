@@ -1,0 +1,17 @@
+@use "abstracts" as *;
+
+.shell {
+  min-height: 100vh;
+  background: var(--color-app);
+}
+
+.main {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-top: var(--header-height);
+  transition: padding $transition-base;
+
+  @include respond-to(md) {
+    padding-left: var(--sidebar-width);
+  }
+}
