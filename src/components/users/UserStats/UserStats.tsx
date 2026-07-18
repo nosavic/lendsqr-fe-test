@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { StatCard } from "@/components/users/StatCard";
+import { StatCard } from "./StatCard";
 import { STAT_CARDS } from "@/constants/stats";
 import { staggerContainer } from "@/lib/animations";
 import type { UserStats as UserStatsData } from "@/types/user";
