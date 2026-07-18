@@ -11,11 +11,10 @@ interface PopoverRenderProps {
 interface PopoverProps {
   trigger: (state: { open: boolean; toggle: () => void }) => ReactNode;
   children: (props: PopoverRenderProps) => ReactNode;
-  align?: "left" | "right";
   className?: string;
 }
 
-export function Popover({ trigger, children, align = "right", className }: PopoverProps) {
+export function Popover({ trigger, children, className }: PopoverProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +33,7 @@ export function Popover({ trigger, children, align = "right", className }: Popov
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -6 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className={`${styles.panel} ${align === "right" ? styles.alignRight : styles.alignLeft} ${className ?? ""}`}
+            className={`${styles.panel} ${className ?? ""}`}
           >
             {children({ close })}
           </motion.div>

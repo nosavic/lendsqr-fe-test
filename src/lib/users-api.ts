@@ -6,30 +6,12 @@ const CACHE_TTL_MS = 5 * 60_000;
 let cache: { users: User[]; fetchedAt: number } | null = null;
 let inflight: Promise<User[]> | null = null;
 
-function getEndpoints(): string[] {
-  const endpoints = (process.env.USERS_API_URL ?? "")
-    .split(",")
-    .map((url) => url.trim())
-    .filter(Boolean);
-
-  if (!endpoints.length) {
+function getEndpoint(): string {
+  const endpoint = process.env.USERS_API_URL;
+  if (!endpoint) {
     throw new Error("USERS_API_URL is not set. Add it to .env.local (see .env.local.example).");
   }
-  return endpoints;
-}
-
-async function fetchShard(url: string): Promise<User[]> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Users API request to ${url} failed with status ${response.status}`);
-  }
-
-  const payload = (await response.json()) as unknown;
-  return Array.isArray(payload) ? (payload as User[]) : ((payload as { data?: User[] }).data ?? []);
-}
-
-function withStableUniqueIds(users: User[]): User[] {
-  return users.map((user, index) => ({ ...user, id: String(index + 1) }));
+  return endpoint;
 }
 
 async function fetchAllUsers(): Promise<User[]> {
@@ -41,8 +23,13 @@ async function fetchAllUsers(): Promise<User[]> {
   }
 
   inflight = (async () => {
-    const shards = await Promise.all(getEndpoints().map(fetchShard));
-    const users = withStableUniqueIds(shards.flat());
+    const response = await fetch(getEndpoint());
+    if (!response.ok) {
+      throw new Error(`Users API request failed with status ${response.status}`);
+    }
+
+    const payload = (await response.json()) as unknown;
+    const users = Array.isArray(payload) ? (payload as User[]) : ((payload as { data?: User[] }).data ?? []);
 
     if (!users.length) {
       throw new Error("Users API returned no records");

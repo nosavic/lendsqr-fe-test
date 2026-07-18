@@ -18,7 +18,7 @@ password combination signs in — authentication is out of scope for this build.
 
 | Variable | Description |
 | --- | --- |
-| `USERS_API_URL` | Endpoint returning the users dataset as a JSON array. Accepts a comma-separated list, in which case the responses are merged. |
+| `USERS_API_URL` | Endpoint returning the users dataset as a JSON array. |
 
 ## Mock API
 
@@ -39,9 +39,6 @@ this size, and mocky.io currently serves an invalid TLS certificate. Serving the
 committed file over a static endpoint avoids all three limits and keeps the
 dataset versioned alongside the code.
 
-`npm run seed:mockapi` remains available for pushing records into mockapi.io
-resources, splitting the dataset across however many URLs `USERS_API_URL` lists.
-
 ## Architecture
 
 Requests go through internal API routes rather than the browser calling the mock
@@ -52,11 +49,9 @@ pagination, and stats in one place.
 browser → /api/users → src/lib/users-api.ts → mock endpoint
 ```
 
-`src/lib/users-api.ts` fetches the dataset once, caches it for five minutes, and
-merges multiple endpoints when several are configured. Because each upstream
-resource numbers its records independently, ids are reassigned across the merged
-set so they stay unique and stable — the details page relies on that when it
-caches a user in local storage.
+`src/lib/users-api.ts` fetches the dataset once and caches it for five minutes,
+so paging and filtering do not re-fetch. Concurrent requests during a cache miss
+share a single in-flight promise rather than each starting their own fetch.
 
 Filtering and pagination run server-side in `/api/users`, so the browser only
 ever holds one page of rows.
@@ -143,4 +138,3 @@ the values change at `.dark` scope and everything follows.
 | `npm run start` | Serve the production build |
 | `npm run lint` | Lint |
 | `npm run generate:users` | Regenerate `data/users.json` |
-| `npm run seed:mockapi` | Push the dataset into mockapi.io resources |

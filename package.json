@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:users": "tsx scripts/generate-users.ts",
-    "seed:mockapi": "tsx scripts/seed-mockapi.ts"
+    "generate:users": "tsx scripts/generate-users.ts"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",

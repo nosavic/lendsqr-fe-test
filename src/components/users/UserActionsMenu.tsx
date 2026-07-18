@@ -9,7 +9,6 @@ interface UserActionsMenuProps {
 export function UserActionsMenu({ onView }: UserActionsMenuProps) {
   return (
     <Popover
-      align="right"
       className={styles.panel}
       trigger={({ toggle }) => (
         <button type="button" onClick={toggle} className={styles.trigger} aria-label="Row actions">

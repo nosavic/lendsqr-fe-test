@@ -38,10 +38,6 @@
   justify-content: center;
 }
 
-@mixin dark {
-  :global(.dark) & { @content; }
-}
-
 @mixin reset-button {
   background: none;
   border: none;

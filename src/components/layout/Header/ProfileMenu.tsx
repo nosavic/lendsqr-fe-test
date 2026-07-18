@@ -11,7 +11,6 @@ export function ProfileMenu() {
 
   return (
     <Popover
-      align="right"
       className={styles.panel}
       trigger={({ toggle }) => (
         <button type="button" onClick={toggle} className={styles.trigger}>
