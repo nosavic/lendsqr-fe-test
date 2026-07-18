@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Logo } from "@/components/ui/Logo";
-import { SearchBar } from "./SearchBar";
-import { ProfileMenu } from "./ProfileMenu";
-import { ThemeToggle } from "./ThemeToggle";
 import { BellIcon, ChevronDownIcon, MenuIcon } from "@/components/icons";
+import { Logo } from "@/components/ui/Logo";
+import { ProfileMenu } from "./ProfileMenu";
+import { SearchBar } from "./SearchBar";
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 
 interface HeaderProps {
@@ -26,26 +26,28 @@ export function Header({ onMenuClick, sidebarCollapsed, onToggleSidebarCollapsed
         >
           <MenuIcon className={styles.menuIcon} />
         </button>
-        <Logo />
-      </div>
 
-      <motion.button
-        type="button"
-        onClick={onToggleSidebarCollapsed}
-        title={collapseLabel}
-        aria-label={collapseLabel}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className={styles.collapseButton}
-      >
-        <motion.span
-          animate={{ rotate: sidebarCollapsed ? -90 : 90 }}
-          transition={{ type: "spring", stiffness: 300, damping: 22 }}
-          className={styles.collapseIconWrap}
+        <Logo />
+
+        <motion.button
+          type="button"
+          onClick={onToggleSidebarCollapsed}
+          title={collapseLabel}
+          aria-label={collapseLabel}
+          aria-expanded={!sidebarCollapsed}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className={styles.collapseButton}
         >
-          <ChevronDownIcon className={styles.collapseIcon} />
-        </motion.span>
-      </motion.button>
+          <motion.span
+            animate={{ rotate: sidebarCollapsed ? -90 : 90 }}
+            transition={{ type: "spring", stiffness: 300, damping: 22 }}
+            className={styles.collapseIconWrap}
+          >
+            <ChevronDownIcon className={styles.collapseIcon} />
+          </motion.span>
+        </motion.button>
+      </div>
 
       <div className={styles.search}>
         <SearchBar />

@@ -45,6 +45,8 @@
   transition: opacity $transition-base;
 
   .item:hover & { opacity: 1; }
+
+  :global(.dark) & { opacity: 0.85; }
 }
 
 .iconActive {

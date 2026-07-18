@@ -3,7 +3,11 @@
 .card {
   position: relative;
   @include surface-card;
-  padding: 0.5rem 1.25rem 1.25rem;
+  padding: 0.5rem 0.75rem 1rem;
+
+  @include respond-to(sm) {
+    padding: 0.5rem 1.25rem 1.25rem;
+  }
 }
 
 .filterPanel {
@@ -16,7 +20,9 @@
 
 .tableWrap {
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   transition: opacity $transition-base;
+  @include hide-scrollbar;
 }
 
 .refreshing {
@@ -33,5 +39,11 @@
 }
 
 .pagination {
-  padding-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-subtle);
+  margin-top: 0.25rem;
+
+  @include respond-to(sm) {
+    padding-top: 1.25rem;
+  }
 }

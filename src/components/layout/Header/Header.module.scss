@@ -10,8 +10,12 @@
   justify-content: space-between;
   gap: 1rem;
   height: $header-height;
-  padding-left: 30px;
+  padding-left: 1rem;
   padding-right: 1rem;
+
+  @include respond-to(sm) {
+    padding-left: 30px;
+  }
   background: var(--color-surface);
   box-shadow: $shadow-header;
   transition: background-color $transition-base;
@@ -24,7 +28,11 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+
+  @include respond-to(sm) {
+    gap: 1rem;
+  }
 }
 
 .menuButton {
@@ -47,16 +55,11 @@
 
 .collapseButton {
   @include reset-button;
-  position: absolute;
-  top: 50%;
-  left: max(var(--sidebar-width), 140px);
-  z-index: 10;
   display: none;
-  transform: translateY(-50%);
+  align-items: center;
   border-radius: $radius-sm;
   padding: 0.5rem;
   color: var(--color-primary);
-  transition: left $transition-base;
 
   &:hover { background: var(--color-surface-hover); }
 
