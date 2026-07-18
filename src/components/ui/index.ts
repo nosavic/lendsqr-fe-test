@@ -2,6 +2,7 @@ export { Avatar } from "./Avatar";
 export { Button } from "./Button";
 export { ConfirmModal } from "./ConfirmModal";
 export { CountUp } from "./CountUp";
+export { DatePicker } from "./DatePicker";
 export { ErrorState } from "./ErrorState";
 export { Logo } from "./Logo";
 export { Pagination } from "./Pagination";

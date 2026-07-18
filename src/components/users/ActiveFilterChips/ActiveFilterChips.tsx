@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { activeFilters } from "@/lib/user-filters";
 import type { FilterField, UserFilters } from "@/lib/user-filters";
 import { STATUS_CONFIG } from "@/constants/status";
+import { formatDisplayDate } from "@/components/ui/DatePicker/calendar";
 import styles from "./ActiveFilterChips.module.scss";
 
 interface ActiveFilterChipsProps {
@@ -13,6 +14,7 @@ interface ActiveFilterChipsProps {
 
 function displayValue(field: FilterField, value: string): string {
   if (field === "status") return STATUS_CONFIG[value as keyof typeof STATUS_CONFIG]?.label ?? value;
+  if (field === "date") return formatDisplayDate(value) || value;
   return value;
 }
 

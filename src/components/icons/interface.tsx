@@ -133,3 +133,19 @@ export function UserPlaceholderIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function CalendarIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} {...props}>
+      <rect x="3" y="5.5" width="18" height="15.5" rx="2.5" />
+      <path strokeLinecap="round" d="M8 3v4M16 3v4" />
+      <g fill="currentColor" stroke="none">
+        <circle cx="8" cy="12" r="1.15" />
+        <circle cx="12" cy="12" r="1.15" />
+        <circle cx="16" cy="12" r="1.15" />
+        <circle cx="8" cy="16.5" r="1.15" />
+        <circle cx="12" cy="16.5" r="1.15" />
+      </g>
+    </svg>
+  );
+}

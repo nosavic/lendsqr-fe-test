@@ -5,6 +5,7 @@ import { EMPTY_USER_FILTERS, countActiveFilters } from "@/lib/user-filters";
 import type { FilterField as FilterFieldName, UserFilters } from "@/lib/user-filters";
 import { FilterField } from "./FilterField";
 import { FilterSelect } from "./FilterSelect";
+import { DatePicker } from "@/components/ui/DatePicker";
 import styles from "./UsersFilterForm.module.scss";
 
 interface UsersFilterFormProps {
@@ -92,12 +93,11 @@ export function UsersFilterForm({
           onChange={(event) => update({ email: event.target.value })}
         />
 
-        <FilterField
+        <DatePicker
           label="Date"
           data-field="date"
-          type="date"
           value={draft.date}
-          onChange={(event) => update({ date: event.target.value })}
+          onChange={(date) => update({ date })}
         />
 
         <FilterField
