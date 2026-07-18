@@ -18,6 +18,7 @@
   gap: 0.875rem;
   overflow-y: auto;
   padding: 1rem;
+  @include hide-scrollbar;
 }
 
 .actions {
