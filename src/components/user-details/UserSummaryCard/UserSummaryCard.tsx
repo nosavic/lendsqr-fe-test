@@ -22,7 +22,7 @@ export function UserSummaryCard({ user, activeTab, onTabChange }: UserSummaryCar
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className={styles.identity}
         >
-          <Avatar name={user.fullName} size="lg" />
+          <Avatar name={user.fullName} size="lg" placeholder />
           <div className={styles.names}>
             <p className={styles.fullName}>{user.fullName}</p>
             <p className={styles.username}>{user.username}</p>

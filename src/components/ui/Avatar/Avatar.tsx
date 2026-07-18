@@ -1,8 +1,10 @@
+import { UserPlaceholderIcon } from "@/components/icons";
 import styles from "./Avatar.module.scss";
 
 interface AvatarProps {
   name: string;
   size?: "md" | "lg";
+  placeholder?: boolean;
 }
 
 function initials(name: string): string {
@@ -15,8 +17,16 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
-export function Avatar({ name, size = "md" }: AvatarProps) {
-  return (
-    <span className={`${styles.avatar} ${size === "lg" ? styles.lg : ""}`}>{initials(name)}</span>
-  );
+export function Avatar({ name, size = "md", placeholder }: AvatarProps) {
+  const classes = `${styles.avatar} ${size === "lg" ? styles.lg : ""}`;
+
+  if (placeholder) {
+    return (
+      <span className={classes} role="img" aria-label={name}>
+        <UserPlaceholderIcon className={styles.placeholderIcon} />
+      </span>
+    );
+  }
+
+  return <span className={classes}>{initials(name)}</span>;
 }
