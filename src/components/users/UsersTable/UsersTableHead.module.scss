@@ -17,12 +17,30 @@
 
 .filterButton {
   @include reset-button;
+  display: inline-flex;
   border-radius: 0.25rem;
   padding: 0.125rem;
   color: var(--color-body);
-  transition: background-color $transition-base;
+  transition: background-color $transition-base, color $transition-base;
 
-  &:hover { background: var(--color-surface-hover); }
+  &:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 1px;
+  }
+}
+
+.filterActive {
+  color: var(--color-secondary);
+}
+
+.filterOpen {
+  background: var(--color-surface-hover);
+  color: var(--color-primary);
 }
 
 .filterIcon {

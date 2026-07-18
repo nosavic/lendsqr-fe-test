@@ -1,0 +1,67 @@
+@use "abstracts" as *;
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0 0.25rem;
+}
+
+.summary {
+  font-size: 0.8rem;
+  color: var(--color-body);
+  margin-right: 0.25rem;
+}
+
+.chip {
+  @include reset-button;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  max-width: 100%;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: $radius-pill;
+  background: var(--color-chip);
+  padding: 0.25rem 0.5rem 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  transition: border-color $transition-base;
+
+  &:hover {
+    border-color: var(--color-status-blacklisted);
+  }
+}
+
+.chipLabel {
+  color: var(--color-body);
+}
+
+.chipValue {
+  @include truncate(12rem);
+  font-weight: 500;
+}
+
+.remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--color-body);
+
+  .chip:hover & { color: var(--color-status-blacklisted); }
+}
+
+.clearAll {
+  @include reset-button;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+  padding: 0.25rem;
+
+  &:hover { text-decoration: underline; }
+}

@@ -12,9 +12,9 @@
 
 .filterPanel {
   position: absolute;
-  left: 1.25rem;
-  top: 3.5rem;
+  top: 3.25rem;
   z-index: 30;
+  max-width: calc(100% - 1.5rem);
   transform-origin: top left;
 }
 

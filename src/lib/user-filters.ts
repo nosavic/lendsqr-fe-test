@@ -18,6 +18,37 @@ export const EMPTY_USER_FILTERS: UserFilters = {
   status: "",
 };
 
+export const FILTER_LABELS: Record<keyof UserFilters, string> = {
+  organization: "Organization",
+  username: "Username",
+  email: "Email",
+  date: "Date joined",
+  phoneNumber: "Phone number",
+  status: "Status",
+};
+
+export type FilterField = keyof UserFilters;
+
+export interface ActiveFilter {
+  field: FilterField;
+  label: string;
+  value: string;
+}
+
+export function activeFilters(filters: UserFilters): ActiveFilter[] {
+  return (Object.keys(FILTER_LABELS) as FilterField[])
+    .filter((field) => filters[field] !== "")
+    .map((field) => ({ field, label: FILTER_LABELS[field], value: filters[field] }));
+}
+
+export function countActiveFilters(filters: UserFilters): number {
+  return activeFilters(filters).length;
+}
+
+export function clearFilterField(filters: UserFilters, field: FilterField): UserFilters {
+  return { ...filters, [field]: "" };
+}
+
 export function filterUsers(users: User[], filters: UserFilters): User[] {
   return users.filter((user) => {
     if (filters.organization && user.organization !== filters.organization) return false;

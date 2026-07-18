@@ -3,7 +3,6 @@ import { BellIcon, ChevronDownIcon, MenuIcon } from "@/components/icons";
 import { Logo } from "@/components/ui/Logo";
 import { ProfileMenu } from "./ProfileMenu";
 import { SearchBar } from "./SearchBar";
-import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 
 interface HeaderProps {
@@ -61,7 +60,6 @@ export function Header({ onMenuClick, sidebarCollapsed, onToggleSidebarCollapsed
           <BellIcon className={styles.bellIcon} />
           <span className={styles.badge} />
         </button>
-        <ThemeToggle />
         <ProfileMenu />
       </div>
     </header>
