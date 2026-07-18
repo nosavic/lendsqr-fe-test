@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
-import { LoginForm } from "@/components/auth/LoginForm";
-import { LoginIllustration } from "@/components/auth/LoginIllustration";
+import { LoginForm, LoginIllustration } from "@/components/auth";
 import styles from "./Login.module.scss";
 
 export default function Login() {

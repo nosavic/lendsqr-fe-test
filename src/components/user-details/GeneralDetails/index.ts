@@ -1,0 +1,1 @@
+export { GeneralDetails } from "./GeneralDetails";

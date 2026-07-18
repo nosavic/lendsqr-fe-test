@@ -74,9 +74,30 @@ src/
   types/             shared types
 ```
 
-Components that own sub-parts live in a folder with them and re-export through
-an `index.ts`, so imports stay at folder level. Standalone components stay as
-single files.
+Every component lives in its own folder with its stylesheet and an `index.ts`
+that re-exports it, and components that own sub-parts keep them in that same
+folder:
+
+```
+components/ui/Button/
+  Button.tsx
+  Button.module.scss
+  index.ts
+
+components/layout/Header/
+  Header.tsx
+  Header.module.scss
+  SearchBar.tsx          only the header uses these
+  SearchBar.module.scss
+  ProfileMenu.tsx
+  ProfileMenu.module.scss
+  index.ts
+```
+
+Each group also has a barrel, so `import { Avatar, Popover } from "@/components/ui"`
+works from outside the group. Inside a group, components import each other by
+their direct path rather than through the barrel, to keep the barrel from
+depending on its own members.
 
 ### Styling
 

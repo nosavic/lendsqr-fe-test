@@ -1,9 +1,8 @@
 import Head from "next/head";
 import type { ReactElement } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { UserStats } from "@/components/users/UserStats";
-import { UsersTable } from "@/components/users/UsersTable";
 import { useUserStats } from "@/hooks/useUserStats";
+import { UserStats, UsersTable } from "@/components/users";
 import type { NextPageWithLayout } from "@/types/next-page";
 import styles from "./Users.module.scss";
 

@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
-import { Avatar } from "@/components/ui/Avatar";
-import { Stars } from "@/components/ui/Stars";
-import { Tabs } from "@/components/ui/Tabs";
 import { USER_DETAIL_TABS } from "@/constants/user-detail-tabs";
-import type { UserDetailTab } from "@/constants/user-detail-tabs";
 import { formatCurrency } from "@/lib/format";
+import { Avatar, Stars, Tabs } from "@/components/ui";
+import type { UserDetailTab } from "@/constants/user-detail-tabs";
 import type { User } from "@/types/user";
 import styles from "./UserSummaryCard.module.scss";
 

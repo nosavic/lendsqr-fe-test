@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
-import { Avatar } from "@/components/ui/Avatar";
-import { Popover } from "@/components/ui/Popover";
 import { ChevronDownIcon, LogoutIcon } from "@/components/icons";
+import { Avatar, Popover } from "@/components/ui";
 import styles from "./ProfileMenu.module.scss";
 
 const PROFILE_NAME = "Adedeji";
