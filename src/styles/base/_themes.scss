@@ -1,0 +1,59 @@
+:root {
+  color-scheme: light;
+
+  --color-primary: #213f7d;
+  --color-primary-dark: #1a2f5a;
+  --color-body: #545f7d;
+  --color-secondary: #39cdcc;
+  --color-secondary-hover: #2eb5b4;
+  --color-nav-inactive: #7a8cb1;
+  --color-app: #fbfbfb;
+  --color-card-line: #f2f3f7;
+  --color-field-line: #e5e7ec;
+  --color-search-line: #d3d9e5;
+
+  --color-status-active: #39cd62;
+  --color-status-inactive: #545f7d;
+  --color-status-pending: #e9b200;
+  --color-status-blacklisted: #e4033b;
+
+  --color-surface: #ffffff;
+  --color-surface-hover: #f6f6f6;
+  --color-surface-active: #f3fcfc;
+  --color-border-subtle: #ececf1;
+  --color-border-strong: #d1d5db;
+  --color-text-strong: #333333;
+  --color-text-muted: #9a9a9a;
+  --color-panel: #fafafa;
+  --color-chip: #e5e8ee;
+  --color-avatar-bg: #dbe0ea;
+
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-work-sans), sans-serif;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-primary: #e8ecf6;
+  --color-primary-dark: #ffffff;
+  --color-body: #a7b0c9;
+  --color-secondary: #39cdcc;
+  --color-secondary-hover: #4fdbda;
+  --color-nav-inactive: #7d88a6;
+  --color-app: #0f1420;
+  --color-card-line: #232a3b;
+  --color-field-line: #2a3145;
+  --color-search-line: #323a52;
+
+  --color-surface: #171d2b;
+  --color-surface-hover: #212838;
+  --color-surface-active: #16323a;
+  --color-border-subtle: #232a3b;
+  --color-border-strong: #333c54;
+  --color-text-strong: #e8ecf6;
+  --color-text-muted: #7d88a6;
+  --color-panel: #11161f;
+  --color-chip: #232a3b;
+  --color-avatar-bg: #2a3145;
+}

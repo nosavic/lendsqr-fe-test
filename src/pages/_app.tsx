@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import type { ReactElement } from "react";
 import type { AppProps } from "next/app";
 import { Work_Sans, Montserrat } from "next/font/google";
