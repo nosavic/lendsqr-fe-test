@@ -1,16 +1,14 @@
 import { motion } from "framer-motion";
 import { StatCard } from "@/components/users/StatCard";
 import { STAT_CARDS } from "@/constants/stats";
+import { staggerContainer } from "@/lib/animations";
 import type { UserStats as UserStatsData } from "@/types/user";
 
 interface UserStatsProps {
   stats: UserStatsData | null;
 }
 
-const gridVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
+const gridVariants = staggerContainer(0.06);
 
 export function UserStats({ stats }: UserStatsProps) {
   return (

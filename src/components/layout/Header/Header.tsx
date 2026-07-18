@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
-import { SearchBar } from "@/components/layout/SearchBar";
-import { ProfileMenu } from "@/components/layout/ProfileMenu";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { SearchBar } from "./SearchBar";
+import { ProfileMenu } from "./ProfileMenu";
+import { ThemeToggle } from "./ThemeToggle";
 import { BellIcon, ChevronDownIcon, MenuIcon } from "@/components/icons";
 import { HEADER_HEIGHT_PX } from "@/constants/nav";
 

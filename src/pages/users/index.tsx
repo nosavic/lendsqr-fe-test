@@ -4,7 +4,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { UserStats } from "@/components/users/UserStats";
 import { UsersTable } from "@/components/users/UsersTable";
 import { useUserStats } from "@/hooks/useUserStats";
-import type { NextPageWithLayout } from "@/pages/_app";
+import type { NextPageWithLayout } from "@/types/next-page";
 
 const UsersPage: NextPageWithLayout = () => {
   const { stats } = useUserStats();

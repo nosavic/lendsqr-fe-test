@@ -1,6 +1,6 @@
 import type { ComponentType, SVGProps } from "react";
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
+import { fadeInUp } from "@/lib/animations";
 
 interface StatCardProps {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
@@ -9,10 +9,7 @@ interface StatCardProps {
   value: string;
 }
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-};
+const cardVariants = fadeInUp(16);
 
 export function StatCard({ icon: Icon, iconBg, label, value }: StatCardProps) {
   return (

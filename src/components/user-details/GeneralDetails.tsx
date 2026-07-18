@@ -1,33 +1,18 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
 import { InfoField } from "@/components/user-details/InfoField";
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 import type { User } from "@/types/user";
+
+const containerVariants = staggerContainer(0.1);
+const sectionVariants = fadeInUp(12, 0.25);
+const fieldGridVariants = staggerContainer(0.04);
+const fieldVariants = fadeInUp(6, 0.2);
 
 interface SectionProps {
   title: string;
   children: ReactNode;
 }
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const sectionVariants: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.25, ease: "easeOut" } },
-};
-
-const fieldGridVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.04 } },
-};
-
-const fieldVariants: Variants = {
-  hidden: { opacity: 0, y: 6 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: "easeOut" } },
-};
 
 function Section({ title, children }: SectionProps) {
   return (

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
-import type { Variants } from "framer-motion";
-import { SidebarNavItem } from "@/components/layout/SidebarNavItem";
+import { SidebarNavItem } from "./SidebarNavItem";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
+import { fadeInLeft, staggerContainer } from "@/lib/animations";
 import { BriefcaseIcon, ChevronDownIcon, LogoutIcon } from "@/components/icons";
 import {
   HEADER_HEIGHT_PX,
@@ -18,15 +18,8 @@ interface SidebarProps {
   collapsed: boolean;
 }
 
-const navContainerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.035 } },
-};
-
-const navGroupVariants: Variants = {
-  hidden: { opacity: 0, x: -8 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.25, ease: "easeOut" } },
-};
+const navContainerVariants = staggerContainer(0.035);
+const navGroupVariants = fadeInLeft(8);
 
 export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
   const router = useRouter();

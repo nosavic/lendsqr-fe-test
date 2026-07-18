@@ -1,0 +1,1 @@
+export { UserDetailTabContent } from "./UserDetailTabContent";

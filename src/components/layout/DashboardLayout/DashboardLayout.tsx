@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
-import { Header } from "@/components/layout/Header";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { Header } from "../Header";
+import { Sidebar } from "../Sidebar";
 import { HEADER_HEIGHT_PX, SIDEBAR_COLLAPSED_WIDTH_PX, SIDEBAR_WIDTH_PX } from "@/constants/nav";
 
 interface DashboardLayoutProps {

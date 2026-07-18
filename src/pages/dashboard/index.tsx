@@ -3,7 +3,7 @@ import type { ReactElement } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { UserStats } from "@/components/users/UserStats";
 import { useUserStats } from "@/hooks/useUserStats";
-import type { NextPageWithLayout } from "@/pages/_app";
+import type { NextPageWithLayout } from "@/types/next-page";
 
 const Dashboard: NextPageWithLayout = () => {
   const { stats } = useUserStats();
