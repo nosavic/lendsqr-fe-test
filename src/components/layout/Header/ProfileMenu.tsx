@@ -6,6 +6,7 @@ import { useTheme } from "@/hooks/useTheme";
 import styles from "./ProfileMenu.module.scss";
 
 const PROFILE_NAME = "Adedeji";
+const PROFILE_AVATAR = "/images/avatar.png";
 
 export function ProfileMenu() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export function ProfileMenu() {
       className={styles.panel}
       trigger={({ toggle }) => (
         <button type="button" onClick={toggle} className={styles.trigger}>
-          <Avatar name={PROFILE_NAME} />
+          <Avatar name={PROFILE_NAME} src={PROFILE_AVATAR} />
           <span className={styles.name}>{PROFILE_NAME}</span>
           <ChevronDownIcon className={styles.caret} />
         </button>
