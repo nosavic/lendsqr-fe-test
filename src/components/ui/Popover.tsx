@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import styles from "./Popover.module.scss";
 
 interface PopoverRenderProps {
   close: () => void;
@@ -24,7 +25,7 @@ export function Popover({ trigger, children, align = "right", className }: Popov
   const close = () => setOpen(false);
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className={styles.container}>
       {trigger({ open, toggle })}
       <AnimatePresence>
         {open && (
@@ -33,8 +34,7 @@ export function Popover({ trigger, children, align = "right", className }: Popov
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -6 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            style={{ transformOrigin: align === "right" ? "top right" : "top left" }}
-            className={`absolute top-full z-50 mt-2 ${align === "right" ? "right-0" : "left-0"} ${className ?? ""}`}
+            className={`${styles.panel} ${align === "right" ? styles.alignRight : styles.alignLeft} ${className ?? ""}`}
           >
             {children({ close })}
           </motion.div>

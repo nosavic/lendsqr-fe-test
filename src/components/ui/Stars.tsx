@@ -1,4 +1,5 @@
 import { StarIcon } from "@/components/icons";
+import styles from "./Stars.module.scss";
 
 interface StarsProps {
   value: number;
@@ -7,12 +8,9 @@ interface StarsProps {
 
 export function Stars({ value, max = 3 }: StarsProps) {
   return (
-    <div className="flex gap-1">
+    <div className={styles.stars}>
       {Array.from({ length: max }).map((_, index) => (
-        <StarIcon
-          key={index}
-          className={`h-4 w-4 ${index < value ? "text-[#e9b200]" : "text-border-strong"}`}
-        />
+        <StarIcon key={index} className={`${styles.star} ${index < value ? styles.filled : ""}`} />
       ))}
     </div>
   );

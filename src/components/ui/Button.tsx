@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
+import styles from "./Button.module.scss";
 
 type ButtonVariant = "primary" | "outline-danger" | "outline-secondary";
 
@@ -9,13 +10,10 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
   children: ReactNode;
 }
 
-const VARIANT_CLASSES: Record<ButtonVariant, string> = {
-  primary:
-    "bg-secondary text-white hover:bg-secondary-hover disabled:opacity-60",
-  "outline-danger":
-    "border border-status-blacklisted text-status-blacklisted hover:bg-status-blacklisted hover:text-white",
-  "outline-secondary":
-    "border border-secondary text-secondary hover:bg-secondary hover:text-white",
+const VARIANT_CLASS: Record<ButtonVariant, string> = {
+  primary: styles.primary,
+  "outline-danger": styles.outlineDanger,
+  "outline-secondary": styles.outlineSecondary,
 };
 
 export function Button({ variant = "primary", className, children, disabled, ...props }: ButtonProps) {
@@ -25,7 +23,7 @@ export function Button({ variant = "primary", className, children, disabled, ...
       whileTap={disabled ? undefined : { scale: 0.97 }}
       transition={{ duration: 0.15, ease: "easeOut" }}
       disabled={disabled}
-      className={`inline-flex items-center justify-center rounded-lg px-6 text-sm font-semibold uppercase tracking-wider transition-colors disabled:cursor-not-allowed ${VARIANT_CLASSES[variant]} ${className ?? ""}`}
+      className={`${styles.button} ${VARIANT_CLASS[variant]} ${className ?? ""}`}
       {...props}
     >
       {children}

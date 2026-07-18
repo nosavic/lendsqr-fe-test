@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import styles from "./ConfirmModal.module.scss";
 
 interface ConfirmModalProps {
   open: boolean;
@@ -29,7 +30,7 @@ export function ConfirmModal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
           onClick={onCancel}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 px-4"
+          className={styles.overlay}
         >
           <motion.div
             role="dialog"
@@ -40,18 +41,18 @@ export function ConfirmModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 12 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-sm rounded-lg bg-surface p-6 shadow-xl"
+            className={styles.dialog}
           >
-            <h2 id="confirm-modal-title" className="text-lg font-semibold text-primary">
+            <h2 id="confirm-modal-title" className={styles.title}>
               {title}
             </h2>
-            {description && <p className="mt-2 text-sm text-body">{description}</p>}
+            {description && <p className={styles.description}>{description}</p>}
 
-            <div className="mt-6 flex justify-end gap-3">
-              <Button variant="outline-secondary" className="h-10" onClick={onCancel}>
+            <div className={styles.actions}>
+              <Button variant="outline-secondary" onClick={onCancel}>
                 {cancelLabel}
               </Button>
-              <Button variant="outline-danger" className="h-10" onClick={onConfirm}>
+              <Button variant="outline-danger" onClick={onConfirm}>
                 {confirmLabel}
               </Button>
             </div>

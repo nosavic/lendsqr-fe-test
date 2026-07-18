@@ -1,0 +1,37 @@
+@use "abstracts" as *;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  height: 50px;
+  width: 100%;
+  border: 2px solid var(--color-field-line);
+  border-radius: $radius-sm;
+  background: var(--color-surface);
+  padding-inline: 1rem;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  outline: none;
+  transition: border-color $transition-base;
+
+  &::placeholder {
+    color: color-mix(in srgb, var(--color-body) 60%, transparent);
+  }
+
+  &:focus {
+    border-color: var(--color-secondary);
+  }
+}
+
+.hasTrailing {
+  padding-right: 4rem;
+}
+
+.trailing {
+  position: absolute;
+  right: 1rem;
+}

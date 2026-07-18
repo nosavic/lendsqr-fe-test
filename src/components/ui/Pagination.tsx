@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDownIcon } from "@/components/icons";
 import { buildPageRange } from "@/lib/pagination";
+import styles from "./Pagination.module.scss";
 
 interface PaginationProps {
   page: number;
@@ -22,16 +23,19 @@ export function Pagination({
   onPageSizeChange,
 }: PaginationProps) {
   const pages = buildPageRange(page, totalPages);
+  const isFirst = page === 1;
+  const isLast = page === totalPages;
 
   return (
-    <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
-      <div className="flex items-center gap-2 text-sm text-body">
+    <div className={styles.pagination}>
+      <div className={styles.summary}>
         <span>Showing</span>
-        <div className="relative">
+        <div className={styles.selectWrapper}>
           <select
             value={pageSize}
             onChange={(event) => onPageSizeChange(Number(event.target.value))}
-            className="appearance-none rounded-lg bg-chip py-1.5 pl-3 pr-8 text-sm font-medium text-primary outline-none"
+            className={styles.select}
+            aria-label="Rows per page"
           >
             {pageSizeOptions.map((size) => (
               <option key={size} value={size}>
@@ -39,28 +43,28 @@ export function Pagination({
               </option>
             ))}
           </select>
-          <ChevronDownIcon className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-primary" />
+          <ChevronDownIcon className={styles.selectIcon} />
         </div>
         <span>out of {total.toLocaleString()}</span>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className={styles.controls}>
         <motion.button
           type="button"
-          disabled={page === 1}
+          disabled={isFirst}
           onClick={() => onPageChange(page - 1)}
-          whileHover={page === 1 ? undefined : { scale: 1.08 }}
-          whileTap={page === 1 ? undefined : { scale: 0.92 }}
-          className="flex h-8 w-8 items-center justify-center rounded-md bg-chip text-primary transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+          whileHover={isFirst ? undefined : { scale: 1.08 }}
+          whileTap={isFirst ? undefined : { scale: 0.92 }}
+          className={styles.arrow}
           aria-label="Previous page"
         >
-          <ChevronDownIcon className="h-4 w-4 rotate-90" />
+          <ChevronDownIcon className={`${styles.arrowIcon} ${styles.prevIcon}`} />
         </motion.button>
 
-        <div className="flex items-center gap-1">
+        <div className={styles.pages}>
           {pages.map((item, index) =>
             item === "ellipsis" ? (
-              <span key={`ellipsis-${index}`} className="flex h-8 w-8 items-center justify-center text-body">
+              <span key={`ellipsis-${index}`} className={styles.ellipsis}>
                 ...
               </span>
             ) : (
@@ -70,9 +74,8 @@ export function Pagination({
                 onClick={() => onPageChange(item)}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.92 }}
-                className={`flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-sm transition-colors ${
-                  item === page ? "font-semibold text-primary" : "text-body hover:bg-surface-hover"
-                }`}
+                aria-current={item === page ? "page" : undefined}
+                className={`${styles.page} ${item === page ? styles.currentPage : ""}`}
               >
                 {item}
               </motion.button>
@@ -82,14 +85,14 @@ export function Pagination({
 
         <motion.button
           type="button"
-          disabled={page === totalPages}
+          disabled={isLast}
           onClick={() => onPageChange(page + 1)}
-          whileHover={page === totalPages ? undefined : { scale: 1.08 }}
-          whileTap={page === totalPages ? undefined : { scale: 0.92 }}
-          className="flex h-8 w-8 items-center justify-center rounded-md bg-chip text-primary transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
+          whileHover={isLast ? undefined : { scale: 1.08 }}
+          whileTap={isLast ? undefined : { scale: 0.92 }}
+          className={styles.arrow}
           aria-label="Next page"
         >
-          <ChevronDownIcon className="h-4 w-4 -rotate-90" />
+          <ChevronDownIcon className={`${styles.arrowIcon} ${styles.nextIcon}`} />
         </motion.button>
       </div>
     </div>

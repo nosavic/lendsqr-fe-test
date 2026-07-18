@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import styles from "./ErrorState.module.scss";
 
 interface ErrorStateProps {
   title?: string;
@@ -16,17 +17,17 @@ export function ErrorState({
       initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex flex-col items-center justify-center gap-3 px-4 py-16 text-center"
+      className={styles.wrapper}
     >
-      <h2 className="text-lg font-semibold text-primary">{title}</h2>
-      <p className="max-w-md text-sm text-body">{message}</p>
+      <h2 className={styles.title}>{title}</h2>
+      <p className={styles.message}>{message}</p>
       {onRetry && (
         <motion.button
           type="button"
           onClick={onRetry}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="mt-2 rounded-md bg-secondary px-5 py-2 text-sm font-semibold text-white hover:bg-secondary-hover"
+          className={styles.retry}
         >
           Try again
         </motion.button>

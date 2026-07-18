@@ -1,6 +1,8 @@
+import styles from "./Avatar.module.scss";
+
 interface AvatarProps {
   name: string;
-  className?: string;
+  size?: "md" | "lg";
 }
 
 function initials(name: string): string {
@@ -13,12 +15,8 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
-export function Avatar({ name, className }: AvatarProps) {
+export function Avatar({ name, size = "md" }: AvatarProps) {
   return (
-    <span
-      className={`flex items-center justify-center rounded-full bg-avatar-bg font-medium text-primary ${className ?? "h-10 w-10 text-sm"}`}
-    >
-      {initials(name)}
-    </span>
+    <span className={`${styles.avatar} ${size === "lg" ? styles.lg : ""}`}>{initials(name)}</span>
   );
 }

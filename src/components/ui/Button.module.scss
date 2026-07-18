@@ -1,0 +1,49 @@
+@use "abstracts" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+  height: 2.5rem;
+  padding-inline: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+  transition: background-color $transition-base, color $transition-base, border-color $transition-base;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background: var(--color-secondary);
+  color: #fff;
+
+  &:hover:not(:disabled) { background: var(--color-secondary-hover); }
+  &:disabled { opacity: 0.6; }
+}
+
+.outlineDanger {
+  border-color: var(--color-status-blacklisted);
+  color: var(--color-status-blacklisted);
+
+  &:hover:not(:disabled) {
+    background: var(--color-status-blacklisted);
+    color: #fff;
+  }
+}
+
+.outlineSecondary {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+
+  &:hover:not(:disabled) {
+    background: var(--color-secondary);
+    color: #fff;
+  }
+}
+

@@ -24,7 +24,7 @@ export function UsersTableBody({
     return (
       <tbody>
         <UsersTableMessageRow colSpan={columnCount}>
-          <Spinner className="mx-auto h-6 w-6" />
+          <Spinner centered />
         </UsersTableMessageRow>
       </tbody>
     );

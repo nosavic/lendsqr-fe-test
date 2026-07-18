@@ -23,7 +23,7 @@ export function UserSummaryCard({ user, activeTab, onTabChange }: UserSummaryCar
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-5 md:pr-8"
         >
-          <Avatar name={user.fullName} className="h-20 w-20 text-2xl md:h-24 md:w-24" />
+          <Avatar name={user.fullName} size="lg" />
           <div className="flex flex-col gap-1">
             <p className="text-2xl font-medium text-primary">{user.fullName}</p>
             <p className="text-body">{user.username}</p>

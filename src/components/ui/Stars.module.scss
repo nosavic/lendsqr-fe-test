@@ -1,0 +1,14 @@
+.stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-border-strong);
+}
+
+.filled {
+  color: var(--color-status-pending);
+}

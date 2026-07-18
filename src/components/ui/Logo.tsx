@@ -1,10 +1,12 @@
+import styles from "./Logo.module.scss";
+
 interface LogoProps {
   className?: string;
 }
 
 export function Logo({ className }: LogoProps) {
   return (
-    <span className={`flex items-end gap-[7px] ${className ?? ""}`}>
+    <span className={`${styles.logo} ${className ?? ""}`}>
       <svg
         width="19"
         height="20"
@@ -12,7 +14,7 @@ export function Logo({ className }: LogoProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
-        className="mb-[2px]"
+        className={styles.mark}
       >
         <path
           fillRule="evenodd"
