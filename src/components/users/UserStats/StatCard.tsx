@@ -1,6 +1,7 @@
 import type { ComponentType, SVGProps } from "react";
 import { motion } from "framer-motion";
 import { CountUp } from "@/components/ui/CountUp";
+import { WaveLoader } from "@/components/ui/WaveLoader";
 import { fadeInUp } from "@/lib/animations";
 import type { StatTone } from "@/constants/stats";
 import styles from "./StatCard.module.scss";
@@ -32,7 +33,7 @@ export function StatCard({ icon: Icon, tone, label, value, countDelay }: StatCar
       </motion.span>
       <span className={styles.label}>{label}</span>
       <span className={styles.value}>
-        {value === null ? "—" : <CountUp value={value} delay={countDelay} />}
+        {value === null ? <WaveLoader /> : <CountUp value={value} delay={countDelay} />}
       </span>
     </motion.div>
   );

@@ -1,0 +1,44 @@
+@use "abstracts" as *;
+
+.wave {
+  display: inline-flex;
+  align-items: center;
+  width: 3.5rem;
+  height: 1.35rem;
+  overflow: hidden;
+  color: var(--color-secondary);
+
+  @include respond-to(sm) {
+    width: 4.25rem;
+    height: 1.7rem;
+  }
+}
+
+.svg {
+  width: 300%;
+  height: 100%;
+  flex-shrink: 0;
+  animation: wave-travel 1.6s linear infinite;
+}
+
+.path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+@keyframes wave-travel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.3333%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    animation: none;
+  }
+}

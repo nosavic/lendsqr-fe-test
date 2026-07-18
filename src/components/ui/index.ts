@@ -11,3 +11,4 @@ export { Stars } from "./Stars";
 export { StatusBadge } from "./StatusBadge";
 export { Tabs } from "./Tabs";
 export { TextField } from "./TextField";
+export { WaveLoader } from "./WaveLoader";
