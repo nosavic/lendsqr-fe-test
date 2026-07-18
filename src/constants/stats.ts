@@ -7,16 +7,18 @@ import {
 } from "@/components/icons";
 import type { UserStats } from "@/types/user";
 
+export type StatTone = "users" | "active" | "loans" | "savings";
+
 export interface StatCardConfig {
   key: keyof UserStats;
   label: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
-  iconBg: string;
+  tone: StatTone;
 }
 
 export const STAT_CARDS: StatCardConfig[] = [
-  { key: "total", label: "USERS", icon: StatUsersIcon, iconBg: "bg-[#fce8ff]" },
-  { key: "active", label: "ACTIVE USERS", icon: StatActiveUsersIcon, iconBg: "bg-[#eee8ff]" },
-  { key: "withLoans", label: "USERS WITH LOANS", icon: StatUsersWithLoansIcon, iconBg: "bg-[#feeeeb]" },
-  { key: "withSavings", label: "USERS WITH SAVINGS", icon: StatUsersWithSavingsIcon, iconBg: "bg-[#ffebf0]" },
+  { key: "total", label: "USERS", icon: StatUsersIcon, tone: "users" },
+  { key: "active", label: "ACTIVE USERS", icon: StatActiveUsersIcon, tone: "active" },
+  { key: "withLoans", label: "USERS WITH LOANS", icon: StatUsersWithLoansIcon, tone: "loans" },
+  { key: "withSavings", label: "USERS WITH SAVINGS", icon: StatUsersWithSavingsIcon, tone: "savings" },
 ];

@@ -1,6 +1,7 @@
 export { Avatar } from "./Avatar";
 export { Button } from "./Button";
 export { ConfirmModal } from "./ConfirmModal";
+export { CountUp } from "./CountUp";
 export { ErrorState } from "./ErrorState";
 export { Logo } from "./Logo";
 export { Pagination } from "./Pagination";

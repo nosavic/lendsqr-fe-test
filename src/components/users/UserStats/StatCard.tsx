@@ -1,18 +1,21 @@
 import type { ComponentType, SVGProps } from "react";
 import { motion } from "framer-motion";
+import { CountUp } from "@/components/ui/CountUp";
 import { fadeInUp } from "@/lib/animations";
+import type { StatTone } from "@/constants/stats";
 import styles from "./StatCard.module.scss";
 
 interface StatCardProps {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
-  iconBg: string;
+  tone: StatTone;
   label: string;
-  value: string;
+  value: number | null;
+  countDelay?: number;
 }
 
 const cardVariants = fadeInUp(16);
 
-export function StatCard({ icon: Icon, iconBg, label, value }: StatCardProps) {
+export function StatCard({ icon: Icon, tone, label, value, countDelay }: StatCardProps) {
   return (
     <motion.div
       variants={cardVariants}
@@ -23,20 +26,14 @@ export function StatCard({ icon: Icon, iconBg, label, value }: StatCardProps) {
       <motion.span
         whileHover={{ scale: 1.08 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className={`${styles.iconWrap} ${iconBg}`}
+        className={`${styles.iconWrap} ${styles[tone]}`}
       >
         <Icon className={styles.icon} />
       </motion.span>
       <span className={styles.label}>{label}</span>
-      <motion.span
-        key={value}
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className={styles.value}
-      >
-        {value}
-      </motion.span>
+      <span className={styles.value}>
+        {value === null ? "—" : <CountUp value={value} delay={countDelay} />}
+      </span>
     </motion.div>
   );
 }
