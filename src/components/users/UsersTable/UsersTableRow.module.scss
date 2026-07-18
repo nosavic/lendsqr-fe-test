@@ -16,6 +16,10 @@
   @include truncate(160px);
 }
 
+.username {
+  @include truncate(150px);
+}
+
 .email {
   @include truncate(200px);
 }

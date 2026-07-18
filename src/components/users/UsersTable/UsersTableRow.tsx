@@ -23,9 +23,15 @@ export function UsersTableRow({ user, index, onSelect }: UsersTableRowProps) {
       transition={{ duration: 0.2, delay: Math.min(index, MAX_STAGGERED_ROWS) * 0.03 }}
       className={styles.row}
     >
-      <td className={`${styles.cell} ${styles.organization}`}>{user.organization}</td>
-      <td className={styles.cell}>{user.username}</td>
-      <td className={`${styles.cell} ${styles.email}`}>{user.email}</td>
+      <td className={`${styles.cell} ${styles.organization}`} title={user.organization}>
+        {user.organization}
+      </td>
+      <td className={`${styles.cell} ${styles.username}`} title={user.username}>
+        {user.username}
+      </td>
+      <td className={`${styles.cell} ${styles.email}`} title={user.email}>
+        {user.email}
+      </td>
       <td className={`${styles.cell} ${styles.nowrap}`}>{user.phoneNumber}</td>
       <td className={`${styles.cell} ${styles.nowrap}`}>{formatDate(user.dateJoined)}</td>
       <td className={styles.cell}>
