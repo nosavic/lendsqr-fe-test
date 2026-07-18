@@ -74,12 +74,21 @@ export function GeneralDetails({ user }: GeneralDetailsProps) {
         <Field label="Instagram" value={user.socials.instagram} />
       </Section>
 
-      <Section title="Guarantor">
-        <Field label="Full Name" value={user.guarantor.fullName} />
-        <Field label="Phone Number" value={user.guarantor.phoneNumber} />
-        <Field label="Email Address" value={user.guarantor.email} />
-        <Field label="Relationship" value={user.guarantor.relationship} />
-      </Section>
+      <motion.section variants={sectionVariants} className={styles.section}>
+        <h2 className={styles.sectionTitle}>Guarantor</h2>
+        {user.guarantors.map((guarantor, index) => (
+          <motion.div
+            key={`${guarantor.email}-${index}`}
+            variants={fieldGridVariants}
+            className={`${styles.grid} ${index > 0 ? styles.additionalGuarantor : ""}`}
+          >
+            <Field label="Full Name" value={guarantor.fullName} />
+            <Field label="Phone Number" value={guarantor.phoneNumber} />
+            <Field label="Email Address" value={guarantor.email} />
+            <Field label="Relationship" value={guarantor.relationship} />
+          </motion.div>
+        ))}
+      </motion.section>
     </motion.div>
   );
 }

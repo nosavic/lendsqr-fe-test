@@ -41,12 +41,12 @@ function buildUser(index: number): User {
       monthlyIncome: `₦${faker.number.int({ min: 100, max: 800 })},000.00 - ₦${faker.number.int({ min: 801, max: 1200 })},000.00`,
       loanRepayment: `₦${faker.number.int({ min: 10, max: 100 })},000`,
     },
-    guarantor: {
+    guarantors: Array.from({ length: 2 }, () => ({
       fullName: faker.person.fullName(),
       phoneNumber: faker.phone.number({ style: "national" }),
       email: faker.internet.email(),
       relationship: faker.helpers.arrayElement(RELATIONSHIPS),
-    },
+    })),
     socials: {
       twitter: `@${faker.internet.username()}`,
       facebook: fullName,

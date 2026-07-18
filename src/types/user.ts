@@ -52,6 +52,6 @@ export interface User {
   hasLoans: boolean;
   hasSavings: boolean;
   educationAndEmployment: UserEducationAndEmployment;
-  guarantor: UserGuarantor;
+  guarantors: UserGuarantor[];
   socials: UserSocials;
 }
