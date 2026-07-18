@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { useRouter } from "next/router";
 import { TextField } from "@/components/ui/TextField";
+import styles from "./LoginForm.module.scss";
 
 export function LoginForm() {
   const router = useRouter();
@@ -18,15 +19,15 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-[400px] flex-col">
-      <div className="mb-10">
-        <h1 className="font-heading text-[2.5rem] font-extrabold tracking-[-0.5px] text-primary">
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.intro}>
+        <h1 className={styles.title}>
           Welcome!
         </h1>
-        <p className="mt-2 text-base text-body">Enter details to login.</p>
+        <p className={styles.subtitle}>Enter details to login.</p>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className={styles.fields}>
         <TextField
           type="email"
           required
@@ -47,7 +48,7 @@ export function LoginForm() {
             <button
               type="button"
               onClick={() => setShowPassword((show) => !show)}
-              className="text-[10px] font-bold uppercase tracking-wide text-secondary hover:text-secondary-hover"
+              className={styles.toggleVisibility}
             >
               {showPassword ? "Hide" : "Show"}
             </button>
@@ -56,7 +57,7 @@ export function LoginForm() {
 
         <a
           href="#"
-          className="text-[0.775rem] font-semibold uppercase tracking-[0.5px] text-secondary hover:text-secondary-hover"
+          className={styles.forgot}
         >
           Forgot Password?
         </a>
@@ -64,7 +65,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={!canSubmit}
-          className="h-12 rounded-lg bg-secondary text-sm font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-secondary-hover disabled:cursor-not-allowed disabled:opacity-70"
+          className={styles.submit}
         >
           Log In
         </button>

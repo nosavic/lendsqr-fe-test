@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { InfoField } from "@/components/user-details/InfoField";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import type { User } from "@/types/user";
+import styles from "./GeneralDetails.module.scss";
 
 const containerVariants = staggerContainer(0.1);
 const sectionVariants = fadeInUp(12, 0.25);
@@ -18,12 +19,12 @@ function Section({ title, children }: SectionProps) {
   return (
     <motion.section
       variants={sectionVariants}
-      className="border-b border-body/20 pb-6 last:border-b-0 last:pb-0"
+      className={styles.section}
     >
-      <h2 className="text-base font-medium text-primary">{title}</h2>
+      <h2 className={styles.sectionTitle}>{title}</h2>
       <motion.div
         variants={fieldGridVariants}
-        className="mt-4 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        className={styles.grid}
       >
         {children}
       </motion.div>
@@ -45,7 +46,7 @@ interface GeneralDetailsProps {
 
 export function GeneralDetails({ user }: GeneralDetailsProps) {
   return (
-    <motion.div initial="hidden" animate="visible" variants={containerVariants} className="flex flex-col gap-6">
+    <motion.div initial="hidden" animate="visible" variants={containerVariants} className={styles.sections}>
       <Section title="Personal Information">
         <Field label="Full Name" value={user.fullName} />
         <Field label="Phone Number" value={user.phoneNumber} />

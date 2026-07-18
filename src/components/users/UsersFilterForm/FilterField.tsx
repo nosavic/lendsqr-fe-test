@@ -1,7 +1,5 @@
 import type { InputHTMLAttributes } from "react";
-
-export const FILTER_CONTROL_CLASS =
-  "w-full rounded-lg border border-border-strong bg-surface px-3 py-2.5 text-sm text-primary outline-none focus:border-secondary";
+import styles from "./FilterControl.module.scss";
 
 interface FilterFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -9,9 +7,9 @@ interface FilterFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export function FilterField({ label, ...props }: FilterFieldProps) {
   return (
-    <label className="flex flex-col gap-1.5 text-sm font-medium text-body">
+    <label className={styles.label}>
       {label}
-      <input className={FILTER_CONTROL_CLASS} {...props} />
+      <input className={styles.control} {...props} />
     </label>
   );
 }

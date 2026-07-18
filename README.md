@@ -1,7 +1,7 @@
 # lendsqr-fe-test
 
 Admin console covering the Login, Dashboard, Users, and User Details screens,
-built with Next.js and TypeScript.
+built with React, Next.js, TypeScript, and SCSS.
 
 ## Getting started
 
@@ -83,6 +83,34 @@ Components that own sub-parts live in a folder with them and re-export through
 an `index.ts`, so imports stay at folder level. Standalone components stay as
 single files.
 
+### Styling
+
+SCSS modules, one `.module.scss` per component, sitting next to the component it
+styles. Shared pieces live under `src/styles`:
+
+```
+src/styles/
+  abstracts/       breakpoints, layout and shadow variables, mixins
+  base/            theme tokens, reset, typography
+  globals.scss     entry point
+  App.module.scss  font wiring for the app wrapper
+```
+
+Colours are CSS custom properties rather than Sass variables, because Sass
+resolves at compile time and the theme has to switch at runtime. Sass variables
+cover the values that never change: breakpoints, radii, z-index, shadows.
+Breakpoints are applied through a `respond-to` mixin instead of repeating media
+queries.
+
+Two details worth knowing when editing styles:
+
+- The reset lives in `@layer base`. Unlayered rules outrank layered ones, so an
+  unlayered reset would beat component styles.
+- The font tokens are declared on the app wrapper, not `:root`, because they
+  reference the variables `next/font` puts on that element. Custom properties
+  substitute at computed-value time, so declaring them higher up resolves them
+  to nothing.
+
 ## State handling
 
 Loading, empty, and error states are handled per surface rather than globally.
@@ -102,6 +130,9 @@ Light and dark themes are driven by a `dark` class on the document root. A small
 script in `_document.tsx` applies the stored or system preference before
 hydration so there is no flash of the wrong theme. `useTheme` reads that state
 through `useSyncExternalStore`.
+
+Because the palette is custom properties, components need no per-theme rules —
+the values change at `.dark` scope and everything follows.
 
 ## Scripts
 

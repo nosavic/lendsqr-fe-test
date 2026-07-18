@@ -14,6 +14,7 @@ import { useUser } from "@/hooks/useUser";
 import { fadeInUp, staggerContainer, tabSwitch } from "@/lib/animations";
 import type { UserDetailTab } from "@/constants/user-detail-tabs";
 import type { NextPageWithLayout } from "@/types/next-page";
+import styles from "./UserDetails.module.scss";
 
 const sectionVariants = fadeInUp(14);
 const containerVariants = staggerContainer(0.08);
@@ -35,7 +36,7 @@ const UserDetailsPage: NextPageWithLayout = () => {
 
     if (isLoading && !user) {
       return (
-        <div className="flex justify-center py-24">
+        <div className={styles.loading}>
           <Spinner size="lg" />
         </div>
       );
@@ -55,7 +56,7 @@ const UserDetailsPage: NextPageWithLayout = () => {
 
         <motion.div
           variants={sectionVariants}
-          className="mt-6 overflow-hidden rounded-lg bg-surface p-6 shadow-[0_1px_3px_rgba(0,0,0,0.1)] md:p-8"
+          className={styles.tabPanel}
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.div key={activeTab} {...tabSwitch}>
@@ -77,7 +78,7 @@ const UserDetailsPage: NextPageWithLayout = () => {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="px-4 py-8 sm:px-6 lg:px-12 lg:py-14"
+        className={styles.page}
       >
         <motion.div variants={sectionVariants}>
           <BackToUsersLink />

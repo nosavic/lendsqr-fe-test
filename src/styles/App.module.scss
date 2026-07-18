@@ -1,0 +1,7 @@
+.app {
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-work-sans), sans-serif;
+
+  font-family: var(--font-sans);
+  color: var(--color-body);
+}

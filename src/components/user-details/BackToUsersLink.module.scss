@@ -1,0 +1,19 @@
+@use "abstracts" as *;
+
+.link {
+  margin-bottom: 1.5rem;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-body);
+  transition: color $transition-base;
+
+  &:hover { color: var(--color-primary); }
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}

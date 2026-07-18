@@ -12,6 +12,7 @@ import type { UserFilters } from "@/lib/user-filters";
 import type { User } from "@/types/user";
 import { UsersTableBody } from "./UsersTableBody";
 import { UsersTableHead } from "./UsersTableHead";
+import styles from "./UsersTable.module.scss";
 
 const COLUMNS = ["Organization", "Username", "Email", "Phone Number", "Date Joined", "Status"] as const;
 const PAGE_SIZE_OPTIONS = [5, 10, 20, 50];
@@ -56,7 +57,7 @@ export function UsersTable() {
   }
 
   return (
-    <div ref={cardRef} className="relative rounded-lg border border-card-line bg-surface px-5 pb-5 pt-2">
+    <div ref={cardRef} className={styles.card}>
       <AnimatePresence>
         {filterOpen && (
           <motion.div
@@ -64,8 +65,7 @@ export function UsersTable() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.97 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            style={{ transformOrigin: "top left" }}
-            className="absolute left-5 top-14 z-30"
+            className={styles.filterPanel}
           >
             <UsersFilterForm
               organizations={organizations}
@@ -77,8 +77,8 @@ export function UsersTable() {
         )}
       </AnimatePresence>
 
-      <div className={`overflow-x-auto transition-opacity ${isFetching && !isLoading ? "opacity-50" : ""}`}>
-        <table className="w-full min-w-[900px] border-collapse text-left text-sm text-body">
+      <div className={`${styles.tableWrap} ${isFetching && !isLoading ? styles.refreshing : ""}`}>
+        <table className={styles.table}>
           <UsersTableHead columns={COLUMNS} onToggleFilter={() => setFilterOpen((open) => !open)} />
           <UsersTableBody
             users={users}
@@ -91,7 +91,7 @@ export function UsersTable() {
         </table>
       </div>
 
-      <div className="pt-5">
+      <div className={styles.pagination}>
         <Pagination
           page={page}
           totalPages={totalPages}

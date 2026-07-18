@@ -13,3 +13,9 @@
 .sm { width: 1.5rem; height: 1.5rem; }
 .lg { width: 2rem; height: 2rem; }
 .centered { margin-inline: auto; }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

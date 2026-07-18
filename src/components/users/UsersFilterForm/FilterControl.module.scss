@@ -1,0 +1,44 @@
+@use "abstracts" as *;
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-body);
+}
+
+.control {
+  width: 100%;
+  border: 1px solid var(--color-border-strong);
+  border-radius: $radius-md;
+  background: var(--color-surface);
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  outline: none;
+  transition: border-color $transition-base;
+
+  &:focus { border-color: var(--color-secondary); }
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  appearance: none;
+  padding-right: 2.25rem;
+}
+
+.caret {
+  pointer-events: none;
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%);
+  color: var(--color-body);
+}

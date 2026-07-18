@@ -1,0 +1,29 @@
+@use "abstracts" as *;
+
+.row {
+  cursor: pointer;
+  border-top: 1px solid var(--color-border-subtle);
+  transition: background-color $transition-base;
+
+  &:hover { background: var(--color-surface-hover); }
+}
+
+.cell {
+  padding: 1rem 0.5rem;
+}
+
+.organization {
+  @include truncate(160px);
+}
+
+.email {
+  @include truncate(200px);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.actions {
+  text-align: right;
+}

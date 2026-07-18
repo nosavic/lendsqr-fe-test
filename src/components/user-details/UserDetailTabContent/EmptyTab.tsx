@@ -1,7 +1,9 @@
+import styles from "./TabContent.module.scss";
+
 interface EmptyTabProps {
   message: string;
 }
 
 export function EmptyTab({ message }: EmptyTabProps) {
-  return <p className="py-16 text-center text-sm text-body">{message}</p>;
+  return <p className={styles.empty}>{message}</p>;
 }

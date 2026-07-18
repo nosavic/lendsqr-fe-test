@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { StatCard } from "./StatCard";
 import { STAT_CARDS } from "@/constants/stats";
 import { staggerContainer } from "@/lib/animations";
+import styles from "./UserStats.module.scss";
 import type { UserStats as UserStatsData } from "@/types/user";
 
 interface UserStatsProps {
@@ -16,7 +17,7 @@ export function UserStats({ stats }: UserStatsProps) {
       initial="hidden"
       animate="visible"
       variants={gridVariants}
-      className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4"
+      className={styles.grid}
     >
       {STAT_CARDS.map((card) => (
         <StatCard

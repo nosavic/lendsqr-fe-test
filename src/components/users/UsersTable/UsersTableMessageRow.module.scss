@@ -1,0 +1,26 @@
+.cell {
+  padding: 4rem 0.5rem;
+  text-align: center;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: var(--color-body);
+}
+
+.empty {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.retry {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 500;
+  color: var(--color-secondary);
+  cursor: pointer;
+
+  &:hover { text-decoration: underline; }
+}

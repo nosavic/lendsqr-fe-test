@@ -1,0 +1,50 @@
+@use "abstracts" as *;
+
+.page {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+  background: var(--color-surface);
+  transition: background-color $transition-base;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 1.5rem;
+  top: 2rem;
+  z-index: 10;
+
+  @include respond-to(sm) {
+    left: 50px;
+    top: 50px;
+  }
+}
+
+.illustrationPane {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-panel);
+  padding-inline: 2.5rem;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+.formPane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1.5rem;
+
+  @include respond-to(sm) {
+    padding-inline: 2.5rem;
+  }
+}

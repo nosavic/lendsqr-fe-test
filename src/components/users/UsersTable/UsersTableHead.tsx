@@ -1,4 +1,5 @@
 import { FilterIcon } from "@/components/icons";
+import styles from "./UsersTableHead.module.scss";
 
 interface UsersTableHeadProps {
   columns: readonly string[];
@@ -10,21 +11,21 @@ export function UsersTableHead({ columns, onToggleFilter }: UsersTableHeadProps)
     <thead>
       <tr>
         {columns.map((column) => (
-          <th key={column} className="whitespace-nowrap px-2 py-3 text-xs font-semibold uppercase text-body">
-            <div className="flex items-center gap-1.5">
+          <th key={column} className={styles.heading}>
+            <div className={styles.headingInner}>
               {column}
               <button
                 type="button"
                 onClick={onToggleFilter}
-                className="rounded p-0.5 text-body transition-colors hover:bg-surface-hover"
+                className={styles.filterButton}
                 aria-label={`Filter by ${column}`}
               >
-                <FilterIcon className="h-3.5 w-3.5" />
+                <FilterIcon className={styles.filterIcon} />
               </button>
             </div>
           </th>
         ))}
-        <th className="px-2 py-3" />
+        <th className={styles.actionsColumn} />
       </tr>
     </thead>
   );

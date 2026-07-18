@@ -1,5 +1,5 @@
-import "@/styles/globals.css";
 import "@/styles/globals.scss";
+import styles from "@/styles/App.module.scss";
 import type { ReactElement } from "react";
 import type { AppProps } from "next/app";
 import { Work_Sans, Montserrat } from "next/font/google";
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const shellKey = Component.getLayout ? "app-shell" : "public";
 
   return (
-    <div className={`${workSans.variable} ${montserrat.variable} font-sans text-body`}>
+    <div className={`${styles.app} ${workSans.variable} ${montserrat.variable}`}>
       <ShellTransition shellKey={shellKey}>
         {getLayout(
           <PageTransition>

@@ -1,0 +1,49 @@
+@use "abstracts" as *;
+
+.panel {
+  width: 11rem;
+  border: 1px solid var(--color-card-line);
+  border-radius: $radius-md;
+  background: var(--color-surface);
+  padding: 0.25rem;
+  box-shadow: $shadow-popover;
+}
+
+.trigger {
+  @include reset-button;
+  border-radius: $radius-sm;
+  padding: 0.25rem;
+  color: var(--color-nav-inactive);
+  transition: background-color $transition-base;
+
+  &:hover { background: var(--color-surface-hover); }
+}
+
+.triggerIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.action {
+  @include reset-button;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: $radius-sm;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--color-body);
+  transition: background-color $transition-base;
+
+  &:hover { background: var(--color-surface-hover); }
+}
+
+.actionIcon {
+  width: 1rem;
+  height: 1rem;
+}

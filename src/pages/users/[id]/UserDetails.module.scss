@@ -1,0 +1,27 @@
+@use "abstracts" as *;
+
+.page {
+  padding: 2rem 1rem;
+
+  @include respond-to(sm) { padding-inline: 1.5rem; }
+  @include respond-to(lg) { padding: 3.5rem 3rem; }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding-block: 6rem;
+}
+
+.tabPanel {
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border-radius: $radius-md;
+  background: var(--color-surface);
+  padding: 1.5rem;
+  box-shadow: $shadow-panel;
+
+  @include respond-to(md) {
+    padding: 2rem;
+  }
+}

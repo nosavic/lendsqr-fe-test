@@ -1,0 +1,37 @@
+@use "abstracts" as *;
+
+.card {
+  position: relative;
+  @include surface-card;
+  padding: 0.5rem 1.25rem 1.25rem;
+}
+
+.filterPanel {
+  position: absolute;
+  left: 1.25rem;
+  top: 3.5rem;
+  z-index: 30;
+  transform-origin: top left;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  transition: opacity $transition-base;
+}
+
+.refreshing {
+  opacity: 0.5;
+}
+
+.table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--color-body);
+}
+
+.pagination {
+  padding-top: 1.25rem;
+}

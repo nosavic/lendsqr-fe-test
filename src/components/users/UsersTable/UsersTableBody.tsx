@@ -2,6 +2,7 @@ import { Spinner } from "@/components/ui/Spinner";
 import type { User } from "@/types/user";
 import { UsersTableMessageRow } from "./UsersTableMessageRow";
 import { UsersTableRow } from "./UsersTableRow";
+import styles from "./UsersTableMessageRow.module.scss";
 
 interface UsersTableBodyProps {
   users: User[];
@@ -33,9 +34,9 @@ export function UsersTableBody({
   if (isError) {
     return (
       <tbody>
-        <UsersTableMessageRow colSpan={columnCount} className="text-sm text-body">
+        <UsersTableMessageRow colSpan={columnCount} className={styles.error}>
           Couldn&apos;t load users.{" "}
-          <button type="button" onClick={onRetry} className="font-medium text-secondary hover:underline">
+          <button type="button" onClick={onRetry} className={styles.retry}>
             Try again
           </button>
         </UsersTableMessageRow>
@@ -46,7 +47,7 @@ export function UsersTableBody({
   if (!users.length) {
     return (
       <tbody>
-        <UsersTableMessageRow colSpan={columnCount} className="italic text-text-muted">
+        <UsersTableMessageRow colSpan={columnCount} className={styles.empty}>
           No users match the selected filters.
         </UsersTableMessageRow>
       </tbody>

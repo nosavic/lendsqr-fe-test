@@ -1,0 +1,96 @@
+@use "abstracts" as *;
+
+.card {
+  border-radius: $radius-md;
+  background: var(--color-surface);
+  padding-top: 1.5rem;
+  box-shadow: $shadow-panel;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1.5rem 1.5rem;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    align-items: center;
+    padding-inline: 2rem;
+  }
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+
+  @include respond-to(md) {
+    padding-right: 2rem;
+  }
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fullName {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.username {
+  color: var(--color-body);
+}
+
+.divided {
+  @include respond-to(md) {
+    border-left: 1px solid color-mix(in srgb, var(--color-body) 20%, transparent);
+    padding-inline: 2rem;
+  }
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tierLabel {
+  font-size: 0.875rem;
+  color: var(--color-body);
+}
+
+.balance {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  @include respond-to(md) {
+    border-left: 1px solid color-mix(in srgb, var(--color-body) 20%, transparent);
+    padding-left: 2rem;
+  }
+}
+
+.amount {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.account {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.tabs {
+  padding-inline: 0.5rem;
+
+  @include respond-to(md) {
+    padding-inline: 1.5rem;
+  }
+}

@@ -1,5 +1,6 @@
 import { Popover } from "@/components/ui/Popover";
 import { ActivateUserIcon, BlacklistUserIcon, EyeIcon, MoreVerticalIcon } from "@/components/icons";
+import styles from "./UserActionsMenu.module.scss";
 
 interface UserActionsMenuProps {
   onView: () => void;
@@ -9,45 +10,32 @@ export function UserActionsMenu({ onView }: UserActionsMenuProps) {
   return (
     <Popover
       align="right"
-      className="w-44 rounded-lg border border-card-line bg-surface p-1 shadow-[0_10px_15px_rgba(0,0,0,0.1)]"
+      className={styles.panel}
       trigger={({ toggle }) => (
-        <button
-          type="button"
-          onClick={toggle}
-          className="rounded-md p-1 text-nav-inactive transition-colors hover:bg-surface-hover"
-          aria-label="Row actions"
-        >
-          <MoreVerticalIcon className="h-5 w-5" />
+        <button type="button" onClick={toggle} className={styles.trigger} aria-label="Row actions">
+          <MoreVerticalIcon className={styles.triggerIcon} />
         </button>
       )}
     >
       {({ close }) => (
-        <div className="flex flex-col">
+        <div className={styles.list}>
           <button
             type="button"
             onClick={() => {
               close();
               onView();
             }}
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-body transition-colors hover:bg-surface-hover"
+            className={styles.action}
           >
-            <EyeIcon className="h-4 w-4" />
+            <EyeIcon className={styles.actionIcon} />
             View Details
           </button>
-          <button
-            type="button"
-            onClick={close}
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-body transition-colors hover:bg-surface-hover"
-          >
-            <BlacklistUserIcon className="h-4 w-4" />
+          <button type="button" onClick={close} className={styles.action}>
+            <BlacklistUserIcon className={styles.actionIcon} />
             Blacklist User
           </button>
-          <button
-            type="button"
-            onClick={close}
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-body transition-colors hover:bg-surface-hover"
-          >
-            <ActivateUserIcon className="h-4 w-4" />
+          <button type="button" onClick={close} className={styles.action}>
+            <ActivateUserIcon className={styles.actionIcon} />
             Activate User
           </button>
         </div>

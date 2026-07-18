@@ -1,0 +1,18 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: var(--color-body);
+}
+
+.value {
+  word-break: break-word;
+  font-size: 1rem;
+  color: var(--color-text-strong);
+}
