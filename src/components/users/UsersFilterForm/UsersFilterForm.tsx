@@ -11,6 +11,7 @@ interface UsersFilterFormProps {
   organizations: string[];
   initialValues: UserFilters;
   focusField: FilterFieldName | null;
+  maxHeight?: number;
   onApply: (filters: UserFilters) => void;
   onReset: () => void;
   onDismiss: () => void;
@@ -20,6 +21,7 @@ export function UsersFilterForm({
   organizations,
   initialValues,
   focusField,
+  maxHeight,
   onApply,
   onReset,
   onDismiss,
@@ -60,6 +62,7 @@ export function UsersFilterForm({
         }
       }}
       className={styles.form}
+      style={{ maxHeight }}
       noValidate
       role="dialog"
       aria-label="Filter users"

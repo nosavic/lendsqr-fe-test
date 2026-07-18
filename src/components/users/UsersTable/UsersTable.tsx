@@ -20,12 +20,51 @@ const PAGE_SIZE_OPTIONS = [5, 10, 20, 50];
 const DEFAULT_PAGE_SIZE = 5;
 const PANEL_WIDTH = 270;
 const PANEL_EDGE_GAP = 12;
+const PANEL_TRIGGER_GAP = 8;
+const PANEL_MIN_HEIGHT = 280;
+
+interface PanelPosition {
+  left: number;
+  top?: number;
+  bottom?: number;
+  maxHeight: number;
+  origin: string;
+}
+
+function computePanelPosition(trigger: HTMLElement, card: HTMLElement): PanelPosition {
+  const cardBox = card.getBoundingClientRect();
+  const triggerBox = trigger.getBoundingClientRect();
+
+  const maxLeft = Math.max(PANEL_EDGE_GAP, cardBox.width - PANEL_WIDTH - PANEL_EDGE_GAP);
+  const left = Math.min(
+    Math.max(PANEL_EDGE_GAP, triggerBox.left - cardBox.left - PANEL_TRIGGER_GAP),
+    maxLeft,
+  );
+
+  const spaceBelow = window.innerHeight - triggerBox.bottom - PANEL_TRIGGER_GAP - PANEL_EDGE_GAP;
+  const spaceAbove = triggerBox.top - PANEL_TRIGGER_GAP - PANEL_EDGE_GAP;
+  const placeBelow = spaceBelow >= PANEL_MIN_HEIGHT || spaceBelow >= spaceAbove;
+
+  return placeBelow
+    ? {
+        left,
+        top: triggerBox.bottom - cardBox.top + PANEL_TRIGGER_GAP,
+        maxHeight: Math.max(PANEL_MIN_HEIGHT, spaceBelow),
+        origin: "top left",
+      }
+    : {
+        left,
+        bottom: cardBox.bottom - triggerBox.top + PANEL_TRIGGER_GAP,
+        maxHeight: Math.max(PANEL_MIN_HEIGHT, spaceAbove),
+        origin: "bottom left",
+      };
+}
 
 export function UsersTable() {
   const router = useRouter();
   const [filters, setFilters] = useState<UserFilters>(EMPTY_USER_FILTERS);
   const [openField, setOpenField] = useState<FilterField | null>(null);
-  const [panelLeft, setPanelLeft] = useState(0);
+  const [panelPosition, setPanelPosition] = useState<PanelPosition | null>(null);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -47,6 +86,23 @@ export function UsersTable() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [openField, closePanel]);
 
+  useEffect(() => {
+    if (!openField) return;
+
+    const reposition = () => {
+      const trigger = triggerRef.current;
+      const card = cardRef.current;
+      if (trigger && card) setPanelPosition(computePanelPosition(trigger, card));
+    };
+
+    window.addEventListener("resize", reposition);
+    window.addEventListener("scroll", reposition, true);
+    return () => {
+      window.removeEventListener("resize", reposition);
+      window.removeEventListener("scroll", reposition, true);
+    };
+  }, [openField]);
+
   const organizations = useUserOrganizations();
   const { users, total, isLoading, isFetching, isError, refetch } = useUsers({ page, pageSize, filters });
 
@@ -60,13 +116,7 @@ export function UsersTable() {
     }
 
     const card = cardRef.current;
-    if (card) {
-      const cardBox = card.getBoundingClientRect();
-      const triggerBox = trigger.getBoundingClientRect();
-      const maxLeft = Math.max(PANEL_EDGE_GAP, cardBox.width - PANEL_WIDTH - PANEL_EDGE_GAP);
-      const preferred = triggerBox.left - cardBox.left - 8;
-      setPanelLeft(Math.min(Math.max(PANEL_EDGE_GAP, preferred), maxLeft));
-    }
+    if (card) setPanelPosition(computePanelPosition(trigger, card));
 
     triggerRef.current = trigger;
     setOpenField(field);
@@ -109,13 +159,19 @@ export function UsersTable() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.97 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            style={{ left: panelLeft }}
+            style={{
+              left: panelPosition?.left,
+              top: panelPosition?.top,
+              bottom: panelPosition?.bottom,
+              transformOrigin: panelPosition?.origin,
+            }}
             className={styles.filterPanel}
           >
             <UsersFilterForm
               organizations={organizations}
               initialValues={filters}
               focusField={openField}
+              maxHeight={panelPosition?.maxHeight}
               onApply={applyFilters}
               onReset={resetFilters}
               onDismiss={() => closePanel(true)}

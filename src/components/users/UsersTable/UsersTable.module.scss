@@ -12,10 +12,8 @@
 
 .filterPanel {
   position: absolute;
-  top: 3.25rem;
   z-index: 30;
   max-width: calc(100% - 1.5rem);
-  transform-origin: top left;
 }
 
 .tableWrap {
