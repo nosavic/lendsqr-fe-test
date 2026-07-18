@@ -56,3 +56,15 @@
 .label {
   white-space: nowrap;
 }
+
+:global(html.sidebar-collapsed) {
+  .item {
+    justify-content: center;
+    padding-inline: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .label {
+    display: none;
+  }
+}

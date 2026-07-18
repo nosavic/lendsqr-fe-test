@@ -1,0 +1,10 @@
+@use "abstracts" as *;
+
+:root {
+  --header-height: #{$header-height};
+  --sidebar-width: #{$sidebar-width};
+}
+
+:root.sidebar-collapsed {
+  --sidebar-width: #{$sidebar-collapsed-width};
+}

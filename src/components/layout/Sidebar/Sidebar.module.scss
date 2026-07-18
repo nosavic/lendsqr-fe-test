@@ -22,8 +22,9 @@
   padding-top: calc(#{$header-height} + 30px);
   background: var(--color-surface);
   box-shadow: $shadow-sidebar;
+  width: var(--sidebar-width);
   transform: translateX(-100%);
-  transition: transform $transition-base, background-color $transition-base;
+  transition: width 0.25s ease, transform $transition-base, background-color $transition-base;
 
   @include respond-to(md) {
     z-index: $z-sidebar;
@@ -139,4 +140,19 @@
   margin: 0.5rem 0 0 1.5rem;
   font-size: 0.75rem;
   color: var(--color-body);
+}
+
+:global(html.sidebar-collapsed) {
+  .orgSwitcher,
+  .logout {
+    justify-content: center;
+    padding-inline: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .orgLabel,
+  .groupTitle,
+  .version {
+    display: none;
+  }
 }

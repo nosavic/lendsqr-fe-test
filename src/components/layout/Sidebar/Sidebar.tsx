@@ -5,7 +5,7 @@ import { SidebarNavItem } from "./SidebarNavItem";
 import { ConfirmModal } from "@/components/ui/ConfirmModal";
 import { fadeInLeft, staggerContainer } from "@/lib/animations";
 import { BriefcaseIcon, ChevronDownIcon, LogoutIcon } from "@/components/icons";
-import { NAV_GROUPS, SIDEBAR_COLLAPSED_WIDTH_PX, SIDEBAR_WIDTH_PX } from "@/constants/nav";
+import { NAV_GROUPS } from "@/constants/nav";
 import styles from "./Sidebar.module.scss";
 
 interface SidebarProps {
@@ -46,11 +46,7 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
         )}
       </AnimatePresence>
 
-      <motion.aside
-        animate={{ width: collapsed ? SIDEBAR_COLLAPSED_WIDTH_PX : SIDEBAR_WIDTH_PX }}
-        transition={{ type: "spring", stiffness: 320, damping: 32 }}
-        className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}
-      >
+      <aside className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
         <button
           type="button"
           title={collapsed ? "Switch Organization" : undefined}
@@ -109,7 +105,7 @@ export function Sidebar({ isOpen, onClose, collapsed }: SidebarProps) {
           </button>
           {!collapsed && <p className={styles.version}>v1.2.0</p>}
         </div>
-      </motion.aside>
+      </aside>
 
       <ConfirmModal
         open={logoutModalOpen}

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
+import { useSidebarCollapsed } from "@/hooks/useSidebarCollapsed";
 import { Header } from "../Header";
 import { Sidebar } from "../Sidebar";
-import { HEADER_HEIGHT_PX, SIDEBAR_COLLAPSED_WIDTH_PX, SIDEBAR_WIDTH_PX } from "@/constants/nav";
 import styles from "./DashboardLayout.module.scss";
 
 interface DashboardLayoutProps {
@@ -11,21 +11,16 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  const layoutVars = {
-    "--sidebar-width": `${sidebarCollapsed ? SIDEBAR_COLLAPSED_WIDTH_PX : SIDEBAR_WIDTH_PX}px`,
-    "--header-height": `${HEADER_HEIGHT_PX}px`,
-  } as CSSProperties;
+  const { collapsed, toggleCollapsed } = useSidebarCollapsed();
 
   return (
-    <div style={layoutVars} className={styles.shell}>
+    <div className={styles.shell}>
       <Header
         onMenuClick={() => setSidebarOpen((open) => !open)}
-        sidebarCollapsed={sidebarCollapsed}
-        onToggleSidebarCollapsed={() => setSidebarCollapsed((collapsed) => !collapsed)}
+        sidebarCollapsed={collapsed}
+        onToggleSidebarCollapsed={toggleCollapsed}
       />
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} collapsed={sidebarCollapsed} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} collapsed={collapsed} />
 
       <main className={styles.main}>{children}</main>
     </div>

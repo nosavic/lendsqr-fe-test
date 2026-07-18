@@ -81,6 +81,3 @@ export const NAV_GROUPS: NavGroup[] = [
   },
 ];
 
-export const HEADER_HEIGHT_PX = 70;
-export const SIDEBAR_WIDTH_PX = 250;
-export const SIDEBAR_COLLAPSED_WIDTH_PX = 80;
