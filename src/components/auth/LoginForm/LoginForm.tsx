@@ -15,7 +15,7 @@ export function LoginForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!canSubmit) return;
-    router.push("/dashboard");
+    router.push("/users");
   }
 
   return (

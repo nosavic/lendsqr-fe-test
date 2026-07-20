@@ -37,7 +37,7 @@ export interface NavGroup {
 export const NAV_GROUPS: NavGroup[] = [
   {
     items: [
-      { label: "Dashboard", href: "/dashboard", icon: SidebarDashboardIcon },
+      { label: "Dashboard", href: "#", icon: SidebarDashboardIcon },
     ],
   },
   {

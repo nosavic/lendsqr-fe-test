@@ -1,7 +1,7 @@
 # lendsqr-fe-test
 
-Admin console covering the Login, Dashboard, Users, and User Details screens,
-built with React, Next.js, TypeScript, and SCSS.
+Admin console covering the Login, Users, and User Details screens, built with
+React, Next.js, TypeScript, and SCSS.
 
 ## Getting started
 
@@ -12,7 +12,8 @@ npm run dev
 ```
 
 The app runs at `http://localhost:3000` and redirects to `/login`. Any email and
-password combination signs in — authentication is out of scope for this build.
+password combination signs in — authentication is out of scope for this build —
+and lands on the users list.
 
 ## Environment
 
