@@ -8,6 +8,8 @@ export function formatCurrency(amount: number): string {
 
 export function formatDate(isoDate: string): string {
   const date = new Date(isoDate);
+  if (Number.isNaN(date.getTime())) return isoDate;
+
   const datePart = new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "2-digit",

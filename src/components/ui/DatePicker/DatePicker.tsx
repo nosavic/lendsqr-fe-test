@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CalendarIcon, ChevronDownIcon } from "@/components/icons";
@@ -33,6 +33,7 @@ export function DatePicker({ label, value, placeholder = "Select date", onChange
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const fieldId = useId();
 
   useEffect(() => {
     if (!open) return;
@@ -74,7 +75,9 @@ export function DatePicker({ label, value, placeholder = "Select date", onChange
 
   return (
     <div className={styles.field}>
-      <span className={styles.label}>{label}</span>
+      <span className={styles.label} id={`${fieldId}-label`}>
+        {label}
+      </span>
 
       <button
         ref={triggerRef}
@@ -88,11 +91,12 @@ export function DatePicker({ label, value, placeholder = "Select date", onChange
           setOpen(true);
         }}
         className={`${styles.trigger} ${open ? styles.triggerOpen : ""}`}
+        aria-labelledby={`${fieldId}-label ${fieldId}-value`}
         aria-haspopup="dialog"
         aria-expanded={open}
         {...rest}
       >
-        <span className={value ? styles.valueText : styles.placeholder}>
+        <span id={`${fieldId}-value`} className={value ? styles.valueText : styles.placeholder}>
           {value ? formatDisplayDate(value) : placeholder}
         </span>
         <CalendarIcon className={styles.calendarIcon} />

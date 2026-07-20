@@ -152,6 +152,27 @@ stored preference before hydration so there is no flash of the wrong theme.
 Because the palette is custom properties, components need no per-theme rules —
 the values change at `.dark` scope and everything follows.
 
+## Tests
+
+```bash
+npm test
+```
+
+Vitest with Testing Library. The suite covers the pure logic first — the filter
+predicate, the pagination range, the calendar helpers, the storage validator, and
+the data client's caching and failure paths — then the components that carry
+behaviour: the users table's four body states, the pagination controls, and the
+date picker.
+
+Each area is tested from both directions: a filter that matches and one that
+returns nothing, a page range that fits and one that has to collapse, a stored
+record that is valid and one left over from an older shape, a request that
+succeeds and one that fails.
+
+The date tests run green under UTC+14, UTC-11, UTC+5:30 and UTC. The picker
+builds its value from the selected cell rather than a `Date`, and that is the
+property those runs are checking.
+
 ## Scripts
 
 | Command | Description |
@@ -160,4 +181,6 @@ the values change at `.dark` scope and everything follows.
 | `npm run build` | Production build |
 | `npm run start` | Serve the production build |
 | `npm run lint` | Lint |
+| `npm test` | Run the test suite |
+| `npm run test:watch` | Run tests in watch mode |
 | `npm run generate:users` | Regenerate `data/users.json` |
