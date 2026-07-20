@@ -33,7 +33,6 @@ export function useSidebarCollapsed() {
     try {
       window.localStorage.setItem(STORAGE_KEY, next ? "collapsed" : "expanded");
     } catch {
-      // a full or unavailable store should not stop the sidebar from moving
     }
     apply(next);
   }, []);

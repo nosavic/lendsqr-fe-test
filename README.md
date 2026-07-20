@@ -142,10 +142,12 @@ fails. `src/lib/user-storage.ts` handles reads and writes.
 
 ## Theming
 
-Light and dark themes are driven by a `dark` class on the document root. A small
-script in `_document.tsx` applies the stored or system preference before
-hydration so there is no flash of the wrong theme. `useTheme` reads that state
-through `useSyncExternalStore`.
+Light and dark themes are driven by a `dark` class on the document root. Light
+is the default and the system setting is not consulted, so the app opens light
+on a machine set to dark; only an explicit choice in the profile menu switches
+it, and that choice is remembered. A small script in `_document.tsx` applies the
+stored preference before hydration so there is no flash of the wrong theme.
+`useTheme` reads that state through `useSyncExternalStore`.
 
 Because the palette is custom properties, components need no per-theme rules —
 the values change at `.dark` scope and everything follows.

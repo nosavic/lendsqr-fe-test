@@ -5,11 +5,9 @@ const APPEARANCE_INIT_SCRIPT = `
   try {
     var root = document.documentElement;
 
-    var storedTheme = window.localStorage.getItem("lendsqr-theme");
-    var theme = storedTheme === "light" || storedTheme === "dark"
-      ? storedTheme
-      : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    if (theme === "dark") root.classList.add("dark");
+    if (window.localStorage.getItem("lendsqr-theme") === "dark") {
+      root.classList.add("dark");
+    }
 
     if (window.localStorage.getItem("lendsqr-sidebar-collapsed") === "collapsed") {
       root.classList.add("sidebar-collapsed");
